@@ -1,0 +1,71 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <interface interface="zope.interface.Interface" />
+
+  <!-- Site and Site Manager Framework -->
+
+  <module module=".interfaces">
+    <allow attributes="ISite" />
+  </module>
+
+  <class class=".site.LocalSiteManager">
+    <implements
+        interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+    <require
+        permission="zope.ManageSite"
+        interface="zope.container.interfaces.IReadContainer" />
+    <require
+        permission="zope.ManageSite"
+        interface="zope.component.interfaces.IComponentLookup
+                   zope.container.interfaces.IWriteContainer" />
+  </class>
+
+  <class class="zope.component.registry.UtilityRegistration">    
+    <require
+        permission="zope.ManageSite"
+        interface="zope.component.interfaces.IUtilityRegistration"
+        />
+  </class>
+
+  <class class=".site.SiteManagementFolder">
+    <factory />
+    <implements
+        interface="zope.annotation.interfaces.IAttributeAnnotatable"
+        />
+    <require
+        permission="zope.ManageSite"
+        interface="zope.container.interfaces.IReadContainer" />
+    <require
+        permission="zope.ManageSite"
+        interface="zope.container.interfaces.IWriteContainer"
+        />
+  </class>
+  
+  <adapter 
+      for="zope.component.interfaces.IComponentLookup"
+      provides="zope.filerepresentation.interfaces.IDirectoryFactory"
+      factory=".site.SMFolderFactory"
+      permission="zope.ManageContent"
+      />
+
+  <adapter factory=".site.SiteManagerAdapter" />
+
+  <subscriber
+      for="zope.location.interfaces.ISite
+           zope.app.publication.interfaces.IBeforeTraverseEvent"
+      handler=".site.threadSiteSubscriber"
+      />
+
+  <subscriber
+      for="zope.app.publication.interfaces.IEndRequestEvent"
+      handler=".site.clearThreadSiteSubscriber"
+      />
+
+  <subscriber
+      for="zope.location.interfaces.ISite
+           zope.container.interfaces.IObjectMovedEvent"
+      handler=".site.changeSiteConfigurationAfterMove"
+      />
+
+
+</configure>

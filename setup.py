@@ -59,7 +59,7 @@ setup(name='zope.site',
       install_requires=[
           'setuptools',
           'zope.annotation',
-          'zope.app.container',
+          'zope.container',
           'zope.security',
           'zope.component [hook]',
           'zope.configuration',

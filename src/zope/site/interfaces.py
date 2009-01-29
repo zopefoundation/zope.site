@@ -18,7 +18,7 @@ $Id$
 
 import zope.interface
 import zope.component.interfaces
-import zope.app.container.interfaces
+import zope.container.interfaces
                     
 class INewLocalSite(zope.interface.Interface):
     """Event: a local site was created
@@ -68,10 +68,10 @@ class ILocalSiteManager(zope.component.interfaces.IComponents):
         """
     
 
-class ISiteManagementFolder(zope.app.container.interfaces.IContainer):
+class ISiteManagementFolder(zope.container.interfaces.IContainer):
     """Component and component registration containers."""
 
     # XXX we need to figure out how to constrain this or, alternatively,
     # just use regular folders, which is probably the beter choice.
-    # zope.app.container.constraints.containers(ILocalSiteManager)
+    # zope.container.constraints.containers(ILocalSiteManager)
 
