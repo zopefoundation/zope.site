@@ -19,6 +19,11 @@ $Id$
 import zope.interface
 import zope.component.interfaces
 import zope.container.interfaces
+
+from zope.location.interfaces import IPossibleSite
+from zope.traversing.interfaces import IContainmentRoot
+from zope.annotation.interfaces import IAttributeAnnotatable
+
                     
 class INewLocalSite(zope.interface.Interface):
     """Event: a local site was created
@@ -75,3 +80,9 @@ class ISiteManagementFolder(zope.container.interfaces.IContainer):
     # just use regular folders, which is probably the beter choice.
     # zope.container.constraints.containers(ILocalSiteManager)
 
+class IFolder(zope.container.interfaces.IContainer, IPossibleSite, 
+              IAttributeAnnotatable):
+    """The standard Zope Folder object interface."""
+
+class IRootFolder(IFolder, IContainmentRoot):
+    """The standard Zope root Folder object interface."""

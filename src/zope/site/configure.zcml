@@ -67,5 +67,33 @@
       handler=".site.changeSiteConfigurationAfterMove"
       />
 
+  <class class=".folder.Folder">
+    <factory
+        id="zope.app.content.Folder"
+        title="Folder"
+        description="Minimal folder"
+        />
+    <allow
+        attributes="getSiteManager"
+        />
+    <require
+        permission="zope.ManageServices"
+        attributes="setSiteManager"
+        />
+    <require
+        permission="zope.View"
+        interface="zope.container.interfaces.IReadContainer" 
+        />
+    <require
+        permission="zope.ManageContent"
+        interface="zope.container.interfaces.IWriteContainer"
+        />
+  </class>
+
+  <adapter
+      provides="zope.location.interfaces.ISublocations"
+      for=".interfaces.IFolder"
+      factory=".folder.FolderSublocations"
+      />
 
 </configure>
