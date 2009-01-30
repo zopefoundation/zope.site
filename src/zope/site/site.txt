@@ -280,7 +280,7 @@ site hierarchy is as follows:
 Before we can move or copy sites, we need to register two event subscribers
 that manage the wiring of site managers after moving or copying:
 
-  >>> from zope.app import container
+  >>> from zope import container
   >>> gsm.registerHandler(
   ...    site.changeSiteConfigurationAfterMove,
   ...    (ISite, container.interfaces.IObjectMovedEvent),
