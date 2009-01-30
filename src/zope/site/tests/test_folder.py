@@ -19,4 +19,7 @@ def test_suite():
             makeSuite(FolderTest),
             DocTestSuite('zope.site.folder',
                          setUp=setUp, tearDown=tearDown),
+            doctest.DocFileSuite("folder.txt",
+                             setUp=setUp, tearDown=tearDown,
+                             optionflags=flags),
             ))

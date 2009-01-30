@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implements, directlyProvides
 
 from zope.site.interfaces import IFolder, IRootFolder
 from zope.site.site import SiteManagerContainer
