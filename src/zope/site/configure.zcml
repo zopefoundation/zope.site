@@ -68,11 +68,6 @@
       />
 
   <class class=".folder.Folder">
-    <factory
-        id="zope.app.content.Folder"
-        title="Folder"
-        description="Minimal folder"
-        />
     <allow
         attributes="getSiteManager"
         />
