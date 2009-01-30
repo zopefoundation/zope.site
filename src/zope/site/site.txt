@@ -10,7 +10,7 @@ Creating and Accessing Sites
 *Sites* are used to provide custom component setups for parts of your
 application or web site. Every folder:
 
-  >>> from zope.app.folder import folder
+  >>> from zope.site import folder
   >>> myfolder = folder.rootFolder()
 
 has the potential to become a site:
