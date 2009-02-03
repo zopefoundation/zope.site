@@ -5,7 +5,8 @@ CHANGES
 3.6.1 (unreleased)
 ------------------
 
-- ...
+- Import symbols moved from zope.traversing to zope.location from the new
+  location.
 
 3.6.0 (2009-1-31)
 -----------------

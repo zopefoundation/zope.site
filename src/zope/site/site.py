@@ -32,9 +32,9 @@ import zope.component.persistentregistry
 import zope.component.interfaces
 import zope.traversing.api
 import zope.location
+import zope.location.interfaces
 
 from zope.component.interfaces import ComponentLookupError
-from zope.traversing.interfaces import IContainmentRoot
 from zope.lifecycleevent import ObjectCreatedEvent
 from zope.filerepresentation.interfaces import IDirectoryFactory
 
@@ -115,7 +115,7 @@ class SiteManagerContainer(Contained):
 
 def _findNextSiteManager(site):
     while True:
-        if IContainmentRoot.providedBy(site):
+        if zope.location.interfaces.IRoot.providedBy(site):
             # we're the root site, return None
             return None
 

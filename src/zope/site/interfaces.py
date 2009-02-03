@@ -19,9 +19,9 @@ $Id$
 import zope.interface
 import zope.component.interfaces
 import zope.container.interfaces
+import zope.location.interfaces
 
 from zope.location.interfaces import IPossibleSite
-from zope.traversing.interfaces import IContainmentRoot
 from zope.annotation.interfaces import IAttributeAnnotatable
 
                     
@@ -84,5 +84,5 @@ class IFolder(zope.container.interfaces.IContainer, IPossibleSite,
               IAttributeAnnotatable):
     """The standard Zope Folder object interface."""
 
-class IRootFolder(IFolder, IContainmentRoot):
+class IRootFolder(IFolder, zope.location.interfaces.IRoot):
     """The standard Zope root Folder object interface."""
