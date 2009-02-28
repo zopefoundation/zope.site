@@ -25,7 +25,7 @@ setup(name='zope.site',
       version = '3.6.1dev',
       author='Zope Corporation and Contributors',
       author_email='zope-dev@zope.org',
-      description='Local Zope Component Support',
+      description='Local registries for zope component architecture',
       long_description=(
           read('README.txt')
           + '\n\n' +
