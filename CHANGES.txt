@@ -14,6 +14,10 @@ CHANGES
 - Allow specify whether to create 'default' SiteManagementFolder on
   initializing LocalSiteManager. Use the ``default_folder`` argument.
 
+- Add a containment constraint to the SiteManagementFolder that makes
+  it only available to be contained in ILocalSiteManagers and other
+  ISiteManagementFolders.
+
 - Change package's mailing list address to zope-dev at zope.org, as
   zope3-dev at zope.org is now retired.
 
