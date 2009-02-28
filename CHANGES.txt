@@ -8,6 +8,12 @@ CHANGES
 - Import symbols moved from zope.traversing to zope.location from the new
   location.
 
+- Don't fail when changing component registry bases while moving ISite
+  object to non-ISite object.
+
+- Allow specify whether to create 'default' SiteManagementFolder on
+  initializing LocalSiteManager. Use the ``default_folder`` argument.
+
 3.6.0 (2009-1-31)
 -----------------
 

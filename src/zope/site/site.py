@@ -161,7 +161,7 @@ class LocalSiteManager(
 
         super(LocalSiteManager, self)._setBases(bases)
 
-    def __init__(self, site):
+    def __init__(self, site, default_folder=True):
         # Locate the site manager
         self.__parent__ = site
         self.__name__ = '++etc++site'
@@ -174,10 +174,11 @@ class LocalSiteManager(
             next = zope.component.getGlobalSiteManager()
         self.__bases__ = (next, )
 
-        # Setup default site management folder
-        folder = SiteManagementFolder()
-        zope.event.notify(ObjectCreatedEvent(folder))
-        self['default'] = folder
+        # Setup default site management folder if requested
+        if default_folder:
+            folder = SiteManagementFolder()
+            zope.event.notify(ObjectCreatedEvent(folder))
+            self['default'] = folder
 
     def _init_registries(self):
         self.adapters = _LocalAdapterRegistry()
@@ -253,4 +254,6 @@ def changeSiteConfigurationAfterMove(site, event):
     """After a site is moved, its site manager links have to be updated."""
     if event.newParent is not None:
         next = _findNextSiteManager(site)
+        if next is None:
+            next = zope.component.getGlobalSiteManager()
         site.getSiteManager().__bases__ = (next, )
