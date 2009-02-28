@@ -21,6 +21,8 @@ CHANGES
 - Change package's mailing list address to zope-dev at zope.org, as
   zope3-dev at zope.org is now retired.
 
+- Remove old unused code. Update package description.
+
 3.6.0 (2009-1-31)
 -----------------
 

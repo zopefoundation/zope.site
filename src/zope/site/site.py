@@ -174,16 +174,6 @@ class LocalSiteManager(
         self.subs = tuple(
             [s for s in self.subs if s is not sub] )
 
-    def __getRegistry(self, registration):
-        """Determine the correct registry for the registration."""
-        if interfaces.IUtilityRegistration.providedBy(registration):
-            return self.utilities
-        elif interfaces.IAdapterRegistration.providedBy(registration):
-            return self.adapters
-        raise ValueError("Unable to detect registration type or registration "
-                         "type is not supported. The registration object must "
-                         "provide `IAdapterRegistration` or "
-                         "`IUtilityRegistration`.")
 
 def threadSiteSubscriber(ob, event):
     """A subscriber to BeforeTraverseEvent
