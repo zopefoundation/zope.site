@@ -19,6 +19,7 @@ $Id$
 import zope.interface
 import zope.component.interfaces
 import zope.container.interfaces
+import zope.container.constraints
 import zope.location.interfaces
 
 from zope.location.interfaces import IPossibleSite
@@ -76,9 +77,8 @@ class ILocalSiteManager(zope.component.interfaces.IComponents):
 class ISiteManagementFolder(zope.container.interfaces.IContainer):
     """Component and component registration containers."""
 
-    # XXX we need to figure out how to constrain this or, alternatively,
-    # just use regular folders, which is probably the beter choice.
-    # zope.container.constraints.containers(ILocalSiteManager)
+    zope.container.constraints.containers(
+        ILocalSiteManager, '.ISiteManagementFolder')
 
 class IFolder(zope.container.interfaces.IContainer, IPossibleSite, 
               IAttributeAnnotatable):

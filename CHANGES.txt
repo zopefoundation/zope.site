@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.6.1 (unreleased)
+3.6.1 (2009-02-28)
 ------------------
 
 - Import symbols moved from zope.traversing to zope.location from the new
@@ -14,8 +14,17 @@ CHANGES
 - Allow specify whether to create 'default' SiteManagementFolder on
   initializing LocalSiteManager. Use the ``default_folder`` argument.
 
-3.6.0 (2009-1-31)
------------------
+- Add a containment constraint to the SiteManagementFolder that makes
+  it only available to be contained in ILocalSiteManagers and other
+  ISiteManagementFolders.
+
+- Change package's mailing list address to zope-dev at zope.org, as
+  zope3-dev at zope.org is now retired.
+
+- Remove old unused code. Update package description.
+
+3.6.0 (2009-01-31)
+------------------
 
 - Use zope.container instead of zope.app.container.
 

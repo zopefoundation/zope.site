@@ -44,28 +44,6 @@ from zope.container.contained import Contained
 from zope.site import interfaces
 from zope.site.hooks import setSite
 
-##############################################################################
-# from zope.app.module import resolve
-
-# Break the dependency on zope.app.module.  In the long run,
-# we need to handle this better.  Perhaps througha utility.
-
-## def findModule(name, context=None):
-##     """Find the module matching the provided name."""
-##     module = ZopeModuleRegistry.findModule(name)
-##     return module or sys.modules.get(name)
-
-import sys
-
-def resolve(name, context=None):
-    """Resolve a dotted name to a Python object."""
-    pos = name.rfind('.')
-    mod = sys.modules.get(name[:pos])
-##    mod = findModule(name[:pos], context)
-    return getattr(mod, name[pos+1:], None)
-
-# from zope.app.module import resolve
-##############################################################################
 
 class SiteManagementFolder(BTreeContainer):
     zope.interface.implements(interfaces.ISiteManagementFolder)
@@ -196,16 +174,6 @@ class LocalSiteManager(
         self.subs = tuple(
             [s for s in self.subs if s is not sub] )
 
-    def __getRegistry(self, registration):
-        """Determine the correct registry for the registration."""
-        if interfaces.IUtilityRegistration.providedBy(registration):
-            return self.utilities
-        elif interfaces.IAdapterRegistration.providedBy(registration):
-            return self.adapters
-        raise ValueError("Unable to detect registration type or registration "
-                         "type is not supported. The registration object must "
-                         "provide `IAdapterRegistration` or "
-                         "`IUtilityRegistration`.")
 
 def threadSiteSubscriber(ob, event):
     """A subscriber to BeforeTraverseEvent
