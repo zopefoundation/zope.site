@@ -5,7 +5,7 @@ CHANGES
 3.6.2 (unreleased)
 ------------------
 
-- ...
+- Fix NameError when calling ``zope.site.testing.siteSetUp(site=True)``.
 
 3.6.1 (2009-02-28)
 ------------------
