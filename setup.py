@@ -32,8 +32,6 @@ setup(name='zope.site',
           'Detailed Documentation\n'
           '**********************\n'
           + '\n\n' +
-          read('src', 'zope', 'site', 'README.txt')
-          + '\n\n' +
           read('src', 'zope', 'site', 'site.txt')
           + '\n\n' +
           read('CHANGES.txt')
