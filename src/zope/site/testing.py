@@ -13,19 +13,16 @@
 ##############################################################################
 """Reusable functionality for testing site-related code
 """
-
 import zope.component
-from zope.component.interfaces import IComponentLookup
-from zope.interface import Interface
-
-from zope.site import LocalSiteManager, SiteManagerAdapter
-from zope.site.folder import rootFolder
-from zope.location.interfaces import ISite
-from zope.site.hooks import setSite
 import zope.site.hooks
-
 from zope.app.testing.placelesssetup import setUp as placelessSetUp
 from zope.app.testing.placelesssetup import tearDown as placelessTearDown
+from zope.component.interfaces import IComponentLookup
+from zope.interface import Interface
+from zope.location.interfaces import ISite
+from zope.site import LocalSiteManager, SiteManagerAdapter
+from zope.site.folder import rootFolder
+from zope.site.hooks import setSite
 
 def createSiteManager(folder, setsite=False):
     if not ISite.providedBy(folder):
@@ -50,8 +47,8 @@ def siteSetUp(site=False):
     placelessSetUp()
     zope.site.hooks.setHooks()
 
-    zope.component.provideAdapter(SiteManagerAdapter, (Interface,),
-                                  IComponentLookup)
+    zope.component.provideAdapter(
+        SiteManagerAdapter, (Interface,), IComponentLookup)
 
     if site:
         site = rootFolder()

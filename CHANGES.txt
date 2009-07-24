@@ -2,14 +2,19 @@
 CHANGES
 =======
 
-3.6.2 (unreleased)
+3.6.2 (2009-07-24)
 ------------------
+
+- Fixed tests to pass with latest packages.
+
+- Removed failing test of persistent interfaces, since it did not test
+  anything in this package and used the deprecated ``zodbcode`` module.
 
 - Fix NameError when calling ``zope.site.testing.siteSetUp(site=True)``.
 
-- The getNextUtility and queryNextUtility functions was moved to zope.component.
-  While backward-compatibility imports are provided, it's strongly recommended
-  to update your imports.
+- The ``getNextUtility`` and ``queryNextUtility`` functions was moved to
+  ``zope.component``.  While backward-compatibility imports are provided, it's
+  strongly recommended to update your imports.
 
 3.6.1 (2009-02-28)
 ------------------
