@@ -225,3 +225,25 @@ def changeSiteConfigurationAfterMove(site, event):
         if next is None:
             next = zope.component.getGlobalSiteManager()
         site.getSiteManager().__bases__ = (next, )
+
+
+@zope.component.adapter(
+    SiteManagerContainer,
+    zope.container.interfaces.IObjectRemovedEvent)
+def siteManagerContainerRemoved(container, event):
+    # The relation between SiteManagerContainer and LocalSiteManager is a
+    # kind of containment hierarchy, but it is not expressed via containment,
+    # but rather via an attribute (_sm).
+    #
+    # When the parent is deleted, this needs to be propagated to the children,
+    # and since we don't have "real" containment, we need to do that manually.
+
+    try:
+        sm = container.getSiteManager()
+    except ComponentLookupError:
+        pass
+    else:
+        zope.event.notify(zope.container.contained.ObjectRemovedEvent(
+            sm, container))
+
+

@@ -97,4 +97,5 @@
       factory=".folder.FolderSublocations"
       />
 
+  <subscriber handler=".site.siteManagerContainerRemoved" />
 </configure>
