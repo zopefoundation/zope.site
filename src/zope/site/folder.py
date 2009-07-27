@@ -1,19 +1,40 @@
+#############################################################################
+#
+# Copyright (c) 2009 Zope Foundation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+"""
+
+$Id$
+"""
+
 from zope.interface import implements, directlyProvides
 
 from zope.site.interfaces import IFolder, IRootFolder
 from zope.site.site import SiteManagerContainer
 from zope.location.interfaces import ISite
 
-from zope.container.folder import Folder
+import zope.container.folder
 
-class Folder(Folder, SiteManagerContainer):
+
+class Folder(zope.container.folder.Folder, SiteManagerContainer):
 
     implements(IFolder)
+
 
 def rootFolder():
     f = Folder()
     directlyProvides(f, IRootFolder)
     return f
+
 
 class FolderSublocations(object):
     """Get the sublocations of a folder
