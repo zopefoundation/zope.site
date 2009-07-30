@@ -229,7 +229,7 @@ def changeSiteConfigurationAfterMove(site, event):
 
 @zope.component.adapter(
     SiteManagerContainer,
-    zope.container.interfaces.IObjectRemovedEvent)
+    zope.container.interfaces.IObjectMovedEvent)
 def siteManagerContainerRemoved(container, event):
     # The relation between SiteManagerContainer and LocalSiteManager is a
     # kind of containment hierarchy, but it is not expressed via containment,
@@ -243,7 +243,5 @@ def siteManagerContainerRemoved(container, event):
     except ComponentLookupError:
         pass
     else:
-        zope.event.notify(zope.container.contained.ObjectRemovedEvent(
-            sm, container))
-
-
+        for ignored in zope.component.subscribers((sm, event), None):
+            pass # work happens during adapter fetch
