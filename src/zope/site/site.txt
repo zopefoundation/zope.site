@@ -123,6 +123,14 @@ LocalSiteManager creation:
   >>> 'default' in nodefault
   False
 
+Also, note that when creating LocalSiteManager, its __parent__ is set to
+site that was passed to constructor and the __name__ is set to ++etc++site.
+
+  >>> nodefault.__parent__ is myfolder
+  True
+  >>> nodefault.__name__ == '++etc++site'
+  True
+
 You can easily create a new site management folder:
 
   >>> sm['mySMF'] = site.SiteManagementFolder()

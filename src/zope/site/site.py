@@ -81,8 +81,6 @@ class SiteManagerContainer(Contained):
 
         if zope.component.interfaces.IComponentLookup.providedBy(sm):
             self._sm = sm
-            sm.__name__ = '++etc++site'
-            sm.__parent__ = self
         else:
             raise ValueError('setSiteManager requires an IComponentLookup')
 
@@ -140,13 +138,14 @@ class LocalSiteManager(
         super(LocalSiteManager, self)._setBases(bases)
 
     def __init__(self, site, default_folder=True):
+        BTreeContainer.__init__(self)
+        zope.component.persistentregistry.PersistentComponents.__init__(self)
+
         # Locate the site manager
         self.__parent__ = site
         self.__name__ = '++etc++site'
 
-        BTreeContainer.__init__(self)
-        zope.component.persistentregistry.PersistentComponents.__init__(self)
-        
+        # Set base site manager
         next = _findNextSiteManager(site)
         if next is None:
             next = zope.component.getGlobalSiteManager()

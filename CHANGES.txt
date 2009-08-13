@@ -5,7 +5,15 @@ CHANGES
 3.6.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Set __parent__ and __name__ in the LocalSiteManager's constructor
+  after calling constructor of its superclasses, so __name__ doesn't
+  get overwritten with empty string by the Components constructor.
+
+- Don't set __parent__ and __name__ attributes of site manager in
+  SiteManagerContainer's ``setSiteManager`` method, as they're
+  already set for LocalSiteManager. Other site manager implementations
+  are not required to have those attributes at all, so we're not
+  adding them anymore.
 
 
 3.6.3 (2009-07-27)
