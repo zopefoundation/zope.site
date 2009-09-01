@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.6.4 (unreleased)
+3.6.4 (2009-09-01)
 ------------------
 
 - Set __parent__ and __name__ in the LocalSiteManager's constructor
