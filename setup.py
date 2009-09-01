@@ -22,7 +22,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name='zope.site',
-      version = '3.6.4dev',
+      version = '3.6.5dev',
       author='Zope Corporation and Contributors',
       author_email='zope-dev@zope.org',
       description='Local registries for zope component architecture',
