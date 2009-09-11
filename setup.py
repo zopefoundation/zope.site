@@ -11,6 +11,11 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+# This package is developed by the Zope Toolkit project, documented here:
+# http://docs.zope.org/zopetoolkit
+# When developing and releasing this package, please follow the documented
+# Zope Toolkit policies as described by this documentation.
+##############################################################################
 """Setup for zope.site package
 
 $Id: setup.py 80209 2007-09-27 09:38:31Z berndroessl $
