@@ -239,6 +239,17 @@ Until now we have only dealt with one local and the global site. But things
 really become interesting, once we have multiple sites. We can override other
 local configuration.
 
+This behaviour uses the notion of location, therefore we need to configure the
+zope.location package first:
+
+  >>> import zope.configuration.xmlconfig
+  >>> _  = zope.configuration.xmlconfig.string("""
+  ... <configure xmlns="http://namespaces.zope.org/zope">
+  ...   <include package="zope.component" file="meta.zcml"/>
+  ...   <include package="zope.location" />
+  ... </configure>
+  ... """)
+
 Let's now create a new folder called `folder11`, add it to `myfolder` and make
 it a site:
 

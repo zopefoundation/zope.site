@@ -158,11 +158,24 @@ def setUp(test):
 def tearDown(test):
     testing.siteTearDown()
 
+
+class Layer(object):
+
+    @staticmethod
+    def setUp():
+        pass
+
+
 def test_suite():
+    site_suite = doctest.DocFileSuite('../site.txt',
+                                       setUp=setUp, tearDown=tearDown)
+    # XXX Isolate the site.txt tests within their own layer as they do some
+    # component registration.
+    site_suite.layer = Layer
+
     return unittest.TestSuite((
         doctest.DocTestSuite(),
         unittest.makeSuite(SiteManagerContainerTest),
-        doctest.DocFileSuite('../site.txt',
-                             setUp=setUp, tearDown=tearDown),
+        site_suite,
         ))
     
