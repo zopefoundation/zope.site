@@ -30,6 +30,7 @@ import zope.interface
 import zope.component
 import zope.component.persistentregistry
 import zope.component.interfaces
+import zope.traversing.api
 import zope.location
 import zope.location.interfaces
 
@@ -95,7 +96,7 @@ def _findNextSiteManager(site):
             return None
 
         try:
-            site = zope.location.interfaces.ILocationInfo(site).getParent()
+            site = zope.traversing.api.getParent(site)
         except TypeError:
             # there was not enough context; probably run from a test
             return None
