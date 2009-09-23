@@ -17,7 +17,6 @@ $Id$
 """
 
 import unittest
-import zope.app.testing.functional
 import zope.component
 import zope.container.interfaces
 import zope.site.folder

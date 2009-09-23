@@ -30,7 +30,6 @@ import zope.site
 from ZODB.DB import DB
 from ZODB.DemoStorage import DemoStorage
 from zope import interface
-from zope.app.testing import setup
 from zope.testing import doctest
 
 
