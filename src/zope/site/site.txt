@@ -83,26 +83,6 @@ If the location passed is a site, the site manager of that site is returned:
   >>> zope.component.interfaces.IComponentLookup(myfolder) is sm
   True
 
-During traversal,
-
-  >>> from zope.app import publication
-  >>> request = object()
-  >>> ev = publication.interfaces.BeforeTraverseEvent(myfolder, request)
-  >>> site.threadSiteSubscriber(myfolder, ev)
-
-the nearest site is also recorded in a thread-global variable:
-
-  >>> from zope.site import hooks
-  >>> hooks.getSite() is myfolder
-  True
-
-After a request is completed, the site setting is cleared again:
-
-  >>> ev = publication.interfaces.EndRequestEvent(myfolder, request)
-  >>> site.clearThreadSiteSubscriber(ev)
-  >>> hooks.getSite() is None
-  True
-
 
 Using the Site Manager
 ----------------------
@@ -208,6 +188,7 @@ Finally, we can get the adapter for a file:
 
 By the way, once you set a site
 
+  >>> from zope.site import hooks
   >>> hooks.setSite(myfolder)
 
 you can simply use the zope.component's `getSiteManager()` method to get

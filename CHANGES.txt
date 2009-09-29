@@ -5,7 +5,8 @@ CHANGES
 3.6.5 (unreleased)
 ------------------
 
-- ...
+- Cleaned up the undeclared dependency on zope.app.publication by moving the
+  two relevant subscriber registrations and their tests to that package.
 
 
 3.6.4 (2009-09-01)

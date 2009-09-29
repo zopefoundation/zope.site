@@ -80,46 +80,6 @@ def test_SiteManagerAdapter():
       True
     """
 
-
-def test_setThreadSite_clearThreadSite():
-    """
-    This test ensures that the site is corectly set and cleared in a thread
-    during traversal using event subscribers. Before we start, no site is set:
-
-      >>> from zope.site import hooks
-      >>> hooks.getSite() is None
-      True
-
-
-      >>> request = object()
-
-      >>> from zope.app.publication import interfaces
-      >>> from zope import site
-
-      
-    On the other hand, if a site is traversed, 
-
-      >>> sm = SiteManagerStub()
-      >>> mysite = CustomFolder('mysite')
-      >>> mysite.setSiteManager(sm)
-
-      >>> ev = interfaces.BeforeTraverseEvent(mysite, request)
-      >>> site.threadSiteSubscriber(mysite, ev)
-
-      >>> hooks.getSite()
-      <CustomFolder mysite>
-
-    Once the request is completed,
-
-      >>> ev = interfaces.EndRequestEvent(mysite, request)
-      >>> site.clearThreadSiteSubscriber(ev)
-
-    the site assignment is cleared again:
-
-      >>> hooks.getSite() is None
-      True
-    """
-
 class BaseTestSiteManagerContainer(unittest.TestCase):
     """This test is for objects that don't have site managers by
     default and that always give back the site manager they were

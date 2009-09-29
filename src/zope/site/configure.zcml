@@ -53,17 +53,6 @@
 
   <subscriber
       for="zope.location.interfaces.ISite
-           zope.app.publication.interfaces.IBeforeTraverseEvent"
-      handler=".site.threadSiteSubscriber"
-      />
-
-  <subscriber
-      for="zope.app.publication.interfaces.IEndRequestEvent"
-      handler=".site.clearThreadSiteSubscriber"
-      />
-
-  <subscriber
-      for="zope.location.interfaces.ISite
            zope.container.interfaces.IObjectMovedEvent"
       handler=".site.changeSiteConfigurationAfterMove"
       />
