@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.7.0 (unreleased)
+3.7.0 (2009-09-29)
 ------------------
 
 - Cleaned up the undeclared dependency on zope.app.publication by moving the
