@@ -5,8 +5,8 @@ CHANGES
 3.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Moved the zope.site.hooks functionality to zope.component.hooks as it isn't
+  actually dealing with zope.site's concept of a site.
 
 3.7.0 (2009-09-29)
 ------------------
@@ -31,7 +31,6 @@ CHANGES
   already set for LocalSiteManager. Other site manager implementations
   are not required to have those attributes at all, so we're not
   adding them anymore.
-
 
 3.6.3 (2009-07-27)
 ------------------
