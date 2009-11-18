@@ -14,6 +14,9 @@ CHANGES
 - Moved the zope.site.hooks functionality to zope.component.hooks as it isn't
   actually dealing with zope.site's concept of a site.
 
+- Import ISite and IPossibleSite from zope.component after they were moved
+  there from zope.location.
+
 3.7.0 (2009-09-29)
 ------------------
 
