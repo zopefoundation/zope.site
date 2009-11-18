@@ -16,8 +16,8 @@
 import os.path
 import zope.app.testing.functional
 import zope.component
+import zope.component.hooks
 import zope.container.interfaces
-import zope.site.hooks
 import zope.site.site
 from zope.app.testing.placelesssetup import setUp as placelessSetUp
 from zope.app.testing.placelesssetup import tearDown as placelessTearDown
@@ -26,13 +26,13 @@ from zope.interface import Interface
 from zope.location.interfaces import ISite
 from zope.site import LocalSiteManager, SiteManagerAdapter, SiteManagerContainer
 from zope.site.folder import rootFolder
-from zope.site.hooks import setSite
+
 
 def createSiteManager(folder, setsite=False):
     if not ISite.providedBy(folder):
         folder.setSiteManager(LocalSiteManager(folder))
     if setsite:
-        setSite(folder)
+        zope.component.hooks.setSite(folder)
     return folder.getSiteManager()
 
 def addUtility(sitemanager, name, iface, utility, suffix=''):
@@ -49,7 +49,7 @@ def addUtility(sitemanager, name, iface, utility, suffix=''):
 
 def siteSetUp(site=False):
     placelessSetUp()
-    zope.site.hooks.setHooks()
+    zope.component.hooks.setHooks()
 
     zope.component.provideAdapter(
         SiteManagerAdapter, (Interface,), IComponentLookup)
@@ -61,8 +61,8 @@ def siteSetUp(site=False):
 
 def siteTearDown():
     placelessTearDown()
-    zope.site.hooks.resetHooks()
-    zope.site.hooks.setSite()
+    zope.component.hooks.resetHooks()
+    zope.component.hooks.setSite()
 
 
 layer = zope.app.testing.functional.ZCMLLayer(

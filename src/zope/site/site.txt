@@ -188,7 +188,7 @@ Finally, we can get the adapter for a file:
 
 By the way, once you set a site
 
-  >>> from zope.site import hooks
+  >>> from zope.component import hooks
   >>> hooks.setSite(myfolder)
 
 you can simply use the zope.component's `getSiteManager()` method to get

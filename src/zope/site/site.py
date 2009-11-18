@@ -29,6 +29,7 @@ import zope.event
 import zope.interface
 import zope.component
 import zope.component.persistentregistry
+import zope.component.hooks
 import zope.component.interfaces
 import zope.location
 import zope.location.interfaces
@@ -41,7 +42,9 @@ from zope.container.btree import BTreeContainer
 from zope.container.contained import Contained
 
 from zope.site import interfaces
-from zope.site.hooks import setSite
+
+# BBB
+from zope.component.hooks import setSite
 
 
 class SiteManagementFolder(BTreeContainer):
@@ -178,7 +181,7 @@ def threadSiteSubscriber(ob, event):
 
     Sets the 'site' thread global if the object traversed is a site.
     """
-    setSite(ob)
+    zope.component.hooks.setSite(ob)
 
 
 def clearThreadSiteSubscriber(event):
@@ -189,7 +192,7 @@ def clearThreadSiteSubscriber(event):
     clearSite()
 
 # Clear the site thread global
-clearSite = setSite
+clearSite = zope.component.hooks.setSite
 try:
     from zope.testing.cleanup import addCleanUp
 except ImportError:
