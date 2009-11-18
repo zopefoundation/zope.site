@@ -21,7 +21,7 @@ import unittest
 import zope.interface
 import zope.interface.verify
 from zope.testing import doctest
-from zope.location.interfaces import ISite, IPossibleSite
+from zope.component.interfaces import ISite, IPossibleSite
 
 from zope.site import folder
 

@@ -52,7 +52,7 @@
   <adapter factory=".site.SiteManagerAdapter" />
 
   <subscriber
-      for="zope.location.interfaces.ISite
+      for="zope.component.interfaces.ISite
            zope.container.interfaces.IObjectMovedEvent"
       handler=".site.changeSiteConfigurationAfterMove"
       />

@@ -15,7 +15,7 @@ application or web site. Every folder:
 
 has the potential to become a site:
 
-  >>> from zope.location.interfaces import ISite, IPossibleSite
+  >>> from zope.component.interfaces import ISite, IPossibleSite
   >>> IPossibleSite.providedBy(myfolder)
   True
 

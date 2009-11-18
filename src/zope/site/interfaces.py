@@ -22,7 +22,6 @@ import zope.container.interfaces
 import zope.container.constraints
 import zope.location.interfaces
 
-from zope.location.interfaces import IPossibleSite
 from zope.annotation.interfaces import IAttributeAnnotatable
 
                     
@@ -80,7 +79,8 @@ class ISiteManagementFolder(zope.container.interfaces.IContainer):
     zope.container.constraints.containers(
         ILocalSiteManager, '.ISiteManagementFolder')
 
-class IFolder(zope.container.interfaces.IContainer, IPossibleSite, 
+class IFolder(zope.container.interfaces.IContainer,
+              zope.component.interfaces.IPossibleSite,
               IAttributeAnnotatable):
     """The standard Zope Folder object interface."""
 

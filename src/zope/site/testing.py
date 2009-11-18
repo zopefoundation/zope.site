@@ -17,19 +17,19 @@ import os.path
 import zope.app.testing.functional
 import zope.component
 import zope.component.hooks
+import zope.component.interfaces
 import zope.container.interfaces
 import zope.site.site
 from zope.app.testing.placelesssetup import setUp as placelessSetUp
 from zope.app.testing.placelesssetup import tearDown as placelessTearDown
 from zope.component.interfaces import IComponentLookup
 from zope.interface import Interface
-from zope.location.interfaces import ISite
 from zope.site import LocalSiteManager, SiteManagerAdapter, SiteManagerContainer
 from zope.site.folder import rootFolder
 
 
 def createSiteManager(folder, setsite=False):
-    if not ISite.providedBy(folder):
+    if not zope.component.interfaces.ISite.providedBy(folder):
         folder.setSiteManager(LocalSiteManager(folder))
     if setsite:
         zope.component.hooks.setSite(folder)

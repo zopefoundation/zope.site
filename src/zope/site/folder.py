@@ -20,8 +20,8 @@ from zope.interface import implements, directlyProvides
 
 from zope.site.interfaces import IFolder, IRootFolder
 from zope.site.site import SiteManagerContainer
-from zope.location.interfaces import ISite
 
+import zope.component.interfaces
 import zope.container.folder
 
 
@@ -59,7 +59,7 @@ class FolderSublocations(object):
       >>> from zope.component.interfaces import IComponentLookup
       >>> directlyProvides(sm, IComponentLookup)
       >>> folder.setSiteManager(sm)
-      >>> directlyProvides(folder, ISite)
+      >>> directlyProvides(folder, zope.component.interfaces.ISite)
       >>> subs = list(FolderSublocations(folder).sublocations())
       >>> subs.remove(folder['ob1'])
       >>> subs.remove(folder['ob2'])
@@ -77,5 +77,5 @@ class FolderSublocations(object):
         for key in folder:
             yield folder[key]
 
-        if ISite.providedBy(folder):
+        if zope.component.interfaces.ISite.providedBy(folder):
             yield folder.getSiteManager()
