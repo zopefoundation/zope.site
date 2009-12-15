@@ -2,11 +2,10 @@
 CHANGES
 =======
 
-3.7.2 (unreleased)
+3.8.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Removed functional testing setup and dependency on zope.app.testing.
 
 3.7.1 (2009-11-18)
 ------------------

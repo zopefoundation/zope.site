@@ -13,18 +13,15 @@
 ##############################################################################
 """Reusable functionality for testing site-related code
 """
-import os.path
-import zope.app.testing.functional
 import zope.component
 import zope.component.hooks
 import zope.component.interfaces
 import zope.container.interfaces
+import zope.container.testing
 import zope.site.site
-from zope.app.testing.placelesssetup import setUp as placelessSetUp
-from zope.app.testing.placelesssetup import tearDown as placelessTearDown
 from zope.component.interfaces import IComponentLookup
 from zope.interface import Interface
-from zope.site import LocalSiteManager, SiteManagerAdapter, SiteManagerContainer
+from zope.site import LocalSiteManager, SiteManagerAdapter
 from zope.site.folder import rootFolder
 
 
@@ -48,7 +45,7 @@ def addUtility(sitemanager, name, iface, utility, suffix=''):
     return utility
 
 def siteSetUp(site=False):
-    placelessSetUp()
+    zope.container.testing.setUp()
     zope.component.hooks.setHooks()
 
     zope.component.provideAdapter(
@@ -60,16 +57,6 @@ def siteSetUp(site=False):
         return site
 
 def siteTearDown():
-    placelessTearDown()
+    zope.container.testing.tearDown()
     zope.component.hooks.resetHooks()
     zope.component.hooks.setSite()
-
-
-layer = zope.app.testing.functional.ZCMLLayer(
-    os.path.join(os.path.dirname(__file__), 'ftesting.zcml'),
-    __name__, 'layer')
-
-
-class FunctionalTestCase(zope.app.testing.functional.FunctionalTestCase):
-
-    layer = layer

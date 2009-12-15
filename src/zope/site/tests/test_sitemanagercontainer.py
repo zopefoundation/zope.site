@@ -12,15 +12,19 @@
 #
 ##############################################################################
 """
-
-$Id$
 """
 
 import unittest
+
 import zope.component
-import zope.container.interfaces
-import zope.site.folder
-import zope.site.site
+from zope.component import getSiteManager
+import zope.container.testing
+from zope.event import notify
+from zope.lifecycleevent import ObjectRemovedEvent
+from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+
+from zope.site.folder import rootFolder
+from zope.site.site import SiteManagerContainer
 import zope.site.testing
 
 
@@ -34,24 +38,35 @@ def removed_event(obj, event):
     removed_called = True
 
 
-class SiteManagerContainerTest(zope.site.testing.FunctionalTestCase):
+def dispatch_event(obj, event):
+    sm = obj._sm
+    if sm is not None:
+        for k,v in sm.items():
+            notify(ObjectRemovedEvent(v, sm, k))
+
+
+class SiteManagerContainerTest(unittest.TestCase):
 
     def setUp(self):
-        super(SiteManagerContainerTest, self).setUp()
-
-        self.root = zope.site.folder.rootFolder()
+        self.root = rootFolder()
+        zope.site.testing.siteSetUp(self.root)
 
         global removed_called
         removed_called = False
-        zope.component.getSiteManager().registerHandler(
-            removed_event,
-            (Dummy, zope.container.interfaces.IObjectRemovedEvent))
+
+        sm = getSiteManager()
+        sm.registerHandler(removed_event, (Dummy, IObjectRemovedEvent))
+        sm.registerHandler(
+            dispatch_event, (SiteManagerContainer, IObjectRemovedEvent))
+
+    def tearDown(self):
+        zope.site.testing.siteTearDown()
 
     def removed_event(self, event):
         self.removed_called = True
 
     def test_delete_smc_should_propagate_removed_event(self):
-        container = zope.site.site.SiteManagerContainer()
+        container = SiteManagerContainer()
         self.root['container'] = container
 
         zope.site.testing.createSiteManager(container)
@@ -61,7 +76,7 @@ class SiteManagerContainerTest(zope.site.testing.FunctionalTestCase):
         self.assert_(removed_called)
 
     def test_delete_when_smc_has_no_sitemanager(self):
-        container = zope.site.site.SiteManagerContainer()
+        container = SiteManagerContainer()
         self.root['container'] = container
 
         try:

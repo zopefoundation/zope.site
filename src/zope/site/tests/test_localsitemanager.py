@@ -21,22 +21,26 @@ from zope.interface import Interface
 from zope.copypastemove import ObjectCopier
 from zope import site
 from zope.site.folder import Folder
-from zope.app.testing.placelesssetup import PlacelessSetup
+import zope.site.testing
+
 
 class I1(Interface):
     pass
 
-class TestLocalSiteManager(PlacelessSetup, unittest.TestCase):
+
+class TestLocalSiteManager(unittest.TestCase):
 
     def setUp(self):
-        super(TestLocalSiteManager, self).setUp()
-
+        zope.site.testing.siteSetUp()
         self.util = object()
         self.root = Folder()
         self.root['site'] = Folder()
         subfolder  = self.root['site']
         subfolder.setSiteManager(site.LocalSiteManager(subfolder))
         subfolder.getSiteManager().registerUtility(self.util, I1)
+
+    def tearDown(self):
+        zope.site.testing.siteTearDown()
 
     def testCopy(self):
         self.assert_(
