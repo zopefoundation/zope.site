@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.9.0 (unreleased)
+3.9.0 (2009-12-29)
 ------------------
 
 - Avoid a test dependency on zope.copypastemove by testing the correct
