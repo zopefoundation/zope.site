@@ -27,7 +27,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name='zope.site',
-      version = '3.8.1dev',
+      version = '3.9.0dev',
       author='Zope Corporation and Contributors',
       author_email='zope-dev@zope.org',
       description='Local registries for zope component architecture',
@@ -56,8 +56,7 @@ setup(name='zope.site',
       package_dir = {'': 'src'},
       namespace_packages=['zope'],
       extras_require=dict(
-          test=['zope.configuration',
-                'zope.copypastemove']),
+          test=['zope.configuration']),
       install_requires=[
           'setuptools',
           'zope.annotation',

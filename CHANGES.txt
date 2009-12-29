@@ -2,9 +2,11 @@
 CHANGES
 =======
 
-3.8.1 (unreleased)
+3.9.0 (unreleased)
 ------------------
 
+- Avoid a test dependency on zope.copypastemove by testing the correct
+  persistent behavior of a site manager using the normal pickle module.
 
 3.8.0 (2009-12-15)
 ------------------

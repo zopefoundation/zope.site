@@ -18,7 +18,6 @@ $Id$
 import unittest
 
 from zope.interface import Interface
-from zope.copypastemove import ObjectCopier
 from zope import site
 from zope.site.folder import Folder
 import zope.site.testing
@@ -42,12 +41,13 @@ class TestLocalSiteManager(unittest.TestCase):
     def tearDown(self):
         zope.site.testing.siteTearDown()
 
-    def testCopy(self):
+    def testPersistence(self):
+        from pickle import dumps, loads
         self.assert_(
             self.root['site'].getSiteManager().getUtility(I1) is self.util)
 
-        copier = ObjectCopier(self.root['site'])
-        copier.copyTo(self.root, 'copied_site')
+        data = dumps(self.root['site'])
+        self.root['copied_site'] = loads(data)
 
         self.assert_(
             self.root['copied_site'].getSiteManager().getUtility(I1) is not self.util)

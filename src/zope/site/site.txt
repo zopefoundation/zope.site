@@ -321,10 +321,7 @@ Now the next site manager for `myfolder11`'s site manager should have changed:
   >>> myfolder.getSiteManager().subs
   ()
 
-Now, we make a copy of `myfolder21` and add it as `myfolder11` to
-`myfolder`:
-
-  # Make sure that our interfaces and classes are picklable.
+Make sure that our interfaces and classes are picklable:
 
   >>> import sys
   >>> sys.modules['zope.site.tests'].IMyUtility = IMyUtility
@@ -332,8 +329,9 @@ Now, we make a copy of `myfolder21` and add it as `myfolder11` to
   >>> sys.modules['zope.site.tests'].MyUtility = MyUtility
   >>> MyUtility.__module__ = 'zope.site.tests'
 
-  >>> from zope.copy import copy
-  >>> myfolder['myfolder11'] = copy(myfolder2['myfolder21'])
+  >>> from pickle import dumps, loads
+  >>> data = dumps(myfolder2['myfolder21'])
+  >>> myfolder['myfolder11'] = loads(data)
 
   >>> myfolder11 = myfolder['myfolder11']
   >>> myfolder11.getSiteManager().__bases__ == (myfolder.getSiteManager(), )
