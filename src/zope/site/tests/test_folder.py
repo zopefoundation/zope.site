@@ -1,7 +1,6 @@
 from unittest import TestSuite, makeSuite
 
-from zope.testing.doctestunit import DocTestSuite
-from zope.testing import doctest
+import doctest
 
 from zope.site.folder import Folder
 from zope.site.testing import siteSetUp, siteTearDown
@@ -24,7 +23,7 @@ def test_suite():
     flags = doctest.ELLIPSIS|doctest.NORMALIZE_WHITESPACE
     return TestSuite((
             makeSuite(FolderTest),
-            DocTestSuite('zope.site.folder',
+            doctest.DocTestSuite('zope.site.folder',
                          setUp=setUp, tearDown=tearDown),
             doctest.DocFileSuite("folder.txt",
                              setUp=setUp, tearDown=tearDown,
