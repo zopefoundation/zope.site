@@ -17,12 +17,14 @@ $Id$
 """
 __docformat__ = "reStructuredText"
 
-import ZODB.FileStorage
+import doctest
 import os
-import persistent
-import transaction
 import unittest
 import warnings
+
+import ZODB.FileStorage
+import persistent
+import transaction
 import zope.component.globalregistry
 import zope.component.testing as placelesssetup
 import zope.container.contained
@@ -30,7 +32,6 @@ import zope.site
 from ZODB.DB import DB
 from ZODB.DemoStorage import DemoStorage
 from zope import interface
-from zope.testing import doctest
 
 
 # test class for testing data conversion
