@@ -21,8 +21,6 @@ A local site manager has a number of roles:
 
   - A registry for persistent modules.  The Zope 3 import hook uses the
     SiteManager to search for modules.
-
-$Id$
 """
 
 import zope.event

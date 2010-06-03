@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Local Component Architecture
-
-$Id$
 """
 
 from zope.site.site import (SiteManagerContainer, SiteManagementFolder,

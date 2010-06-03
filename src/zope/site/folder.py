@@ -11,18 +11,11 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""
-
-$Id$
-"""
-
-from zope.interface import implements, directlyProvides
-
-from zope.site.interfaces import IFolder, IRootFolder
-from zope.site.site import SiteManagerContainer
-
 import zope.component.interfaces
 import zope.container.folder
+from zope.interface import implements, directlyProvides
+from zope.site.interfaces import IFolder, IRootFolder
+from zope.site.site import SiteManagerContainer
 
 
 class Folder(zope.container.folder.Folder, SiteManagerContainer):

@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Interfaces for the Local Component Architecture
-
-$Id$
 """
 
 import zope.interface

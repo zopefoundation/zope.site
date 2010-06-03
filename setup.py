@@ -17,8 +17,6 @@
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
 """Setup for zope.site package
-
-$Id: setup.py 80209 2007-09-27 09:38:31Z berndroessl $
 """
 import os
 from setuptools import setup, find_packages
