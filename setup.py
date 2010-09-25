@@ -54,7 +54,10 @@ setup(name='zope.site',
       package_dir = {'': 'src'},
       namespace_packages=['zope'],
       extras_require=dict(
-          test=['zope.configuration']),
+          test=[
+              'zope.configuration',
+              'zope.testing',
+              ]),
       install_requires=[
           'setuptools',
           'zope.annotation',
