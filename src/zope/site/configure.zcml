@@ -1,6 +1,10 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            i18n_domain="zope">
 
+  <include file="meta.zcml" package="zope.component" />
+  <include file="meta.zcml" package="zope.security" />
+  <include file="permissions.zcml" package="zope.security" />
+
   <interface interface="zope.interface.Interface" />
 
   <!-- Site and Site Manager Framework -->

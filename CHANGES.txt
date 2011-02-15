@@ -5,7 +5,7 @@ CHANGES
 3.9.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Include zcml dependencies in configure.zcml, added tests for zcml.
 
 
 3.9.2 (2010-09-25)

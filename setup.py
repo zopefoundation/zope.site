@@ -55,7 +55,9 @@ setup(name='zope.site',
       namespace_packages=['zope'],
       extras_require=dict(
           test=[
+              'zope.component[zcml]',
               'zope.configuration',
+              'zope.security[zcml]',
               'zope.testing',
               ]),
       install_requires=[
