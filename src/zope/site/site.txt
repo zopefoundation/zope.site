@@ -126,8 +126,8 @@ can register some components. Let's start with a utility:
 
   >>> import persistent
   >>> from zope.container.contained import Contained
-  >>> class MyUtility(persistent.Persistent, Contained):
-  ...     zope.interface.implements(IMyUtility)
+  >>> @zope.interface.implementer(IMyUtility)
+  ... class MyUtility(persistent.Persistent, Contained):
   ...     def __init__(self, title):
   ...         self.title = title
   ...     def __repr__(self):
@@ -165,11 +165,12 @@ well. Here the adapter will provide the size of a file:
   >>> class ISized(zope.interface.Interface):
   ...     pass
 
-  >>> class File(object):
-  ...     zope.interface.implements(IFile)
+  >>> @zope.interface.implementer(IFile)
+  ... class File(object):
+  ...     pass
 
-  >>> class FileSize(object):
-  ...     zope.interface.implements(ISized)
+  >>> @zope.interface.implementer(ISized)
+  ... class FileSize(object):
   ...     def __init__(self, context):
   ...         self.context = context
 

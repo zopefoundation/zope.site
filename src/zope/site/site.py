@@ -45,12 +45,13 @@ from zope.site import interfaces
 from zope.component.hooks import setSite
 
 
+@zope.interface.implementer(interfaces.ISiteManagementFolder)
 class SiteManagementFolder(BTreeContainer):
-    zope.interface.implements(interfaces.ISiteManagementFolder)
+    pass
 
 
+@zope.interface.implementer(IDirectoryFactory)
 class SMFolderFactory(object):
-    zope.interface.implements(IDirectoryFactory)
 
     def __init__(self, context):
         self.context = context
@@ -59,13 +60,13 @@ class SMFolderFactory(object):
         return SiteManagementFolder()
 
 
+@zope.interface.implementer(zope.component.interfaces.IPossibleSite)
 class SiteManagerContainer(Contained):
     """Implement access to the site manager (++etc++site).
 
     This is a mix-in that implements the IPossibleSite
     interface; for example, it is used by the Folder implementation.
     """
-    zope.interface.implements(zope.component.interfaces.IPossibleSite)
 
     _sm = None
 
@@ -111,12 +112,12 @@ class _LocalAdapterRegistry(
     ):
     pass
 
+@zope.interface.implementer(interfaces.ILocalSiteManager)
 class LocalSiteManager(
     BTreeContainer,
     zope.component.persistentregistry.PersistentComponents,
     ):
     """Local Site Manager implementation"""
-    zope.interface.implements(interfaces.ILocalSiteManager)
 
     subs = ()
 

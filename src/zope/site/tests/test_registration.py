@@ -35,8 +35,9 @@ from zope import interface
 # test class for testing data conversion
 class IFoo(interface.Interface):
     pass
+
+@interface.implementer(IFoo)
 class Foo(persistent.Persistent, zope.container.contained.Contained):
-    interface.implements(IFoo)
     name = ''
     def __init__(self, name=''):
         self.name = name

@@ -13,14 +13,14 @@
 ##############################################################################
 import zope.component.interfaces
 import zope.container.folder
-from zope.interface import implements, directlyProvides
+from zope.interface import implementer, directlyProvides
 from zope.site.interfaces import IFolder, IRootFolder
 from zope.site.site import SiteManagerContainer
 
 
+@implementer(IFolder)
 class Folder(zope.container.folder.Folder, SiteManagerContainer):
-
-    implements(IFolder)
+    pass
 
 
 def rootFolder():

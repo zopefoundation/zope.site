@@ -26,14 +26,13 @@ from zope.annotation.interfaces import IAttributeAnnotatable
 class INewLocalSite(zope.interface.Interface):
     """Event: a local site was created
     """
-
     manager = zope.interface.Attribute("The new site manager")
 
+
+@zope.interface.implementer(INewLocalSite)
 class NewLocalSite(object):
     """Event: a local site was created
     """
-    zope.interface.implements(INewLocalSite)
-    
     def __init__(self, manager):
         self.manager = manager
 

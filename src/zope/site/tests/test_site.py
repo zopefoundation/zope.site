@@ -28,8 +28,9 @@ from zope.site import interfaces
 from zope import site
 from zope.site import testing
 
+@zope.interface.implementer(interfaces.ILocalSiteManager)
 class SiteManagerStub(object):
-    zope.interface.implements(interfaces.ILocalSiteManager)
+    pass
 
 class CustomFolder(folder.Folder):
 
