@@ -81,7 +81,7 @@ class SiteManagerContainerTest(unittest.TestCase):
 
         try:
             del self.root['container']
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
 
 

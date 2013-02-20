@@ -13,6 +13,7 @@
 ##############################################################################
 """Reusable functionality for testing site-related code
 """
+import re
 import zope.component
 import zope.component.hooks
 import zope.component.interfaces
@@ -23,6 +24,15 @@ from zope.component.interfaces import IComponentLookup
 from zope.interface import Interface
 from zope.site import LocalSiteManager, SiteManagerAdapter
 from zope.site.folder import rootFolder
+from zope.testing import renormalizing
+
+checker = renormalizing.RENormalizing([
+    # Python 3 unicode removed the "u".
+    (re.compile("u('.*?')"),
+     r"\1"),
+    (re.compile('u(".*?")'),
+     r"\1"),
+    ])
 
 
 def createSiteManager(folder, setsite=False):

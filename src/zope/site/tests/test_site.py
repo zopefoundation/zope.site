@@ -52,7 +52,7 @@ def test_SiteManagerAdapter():
       >>> site.setSiteManager(sm)
 
     then the adapter simply return's the site's site manager:
-    
+
       >>> from zope.site import SiteManagerAdapter
       >>> SiteManagerAdapter(site) is sm
       True
@@ -64,7 +64,7 @@ def test_SiteManagerAdapter():
       >>> ob2 = folder.Folder()
       >>> ob2.__parent__ = ob
 
-    we 'acquire' the closest site and return its site manager: 
+    we 'acquire' the closest site and return its site manager:
 
       >>> SiteManagerAdapter(ob) is sm
       True
@@ -73,7 +73,7 @@ def test_SiteManagerAdapter():
 
     If we are unable to find a local site manager, then the global site
     manager is returned.
-    
+
       >>> import zope.component
       >>> orphan = CustomFolder('orphan')
       >>> SiteManagerAdapter(orphan) is zope.component.getGlobalSiteManager()
@@ -114,7 +114,7 @@ class SiteManagerContainerTest(BaseTestSiteManagerContainer):
 
 def setUp(test):
     testing.siteSetUp()
-    
+
 def tearDown(test):
     testing.siteTearDown()
 
@@ -138,4 +138,4 @@ def test_suite():
         unittest.makeSuite(SiteManagerContainerTest),
         site_suite,
         ))
-    
+

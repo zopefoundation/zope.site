@@ -24,8 +24,23 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+def alltests():
+    import os
+    import sys
+    import unittest
+    # use the zope.testrunner machinery to find all the
+    # test suites we've put under ourselves
+    import zope.testrunner.find
+    import zope.testrunner.options
+    here = os.path.abspath(os.path.join(os.path.dirname(__file__), 'src'))
+    args = sys.argv[:]
+    defaults = ["--test-path", here]
+    options = zope.testrunner.options.get_options(args, defaults)
+    suites = list(zope.testrunner.find.find_suites(options))
+    return unittest.TestSuite(suites)
+
 setup(name='zope.site',
-      version='3.9.3dev',
+      version='4.0.0a1.dev',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Local registries for zope component architecture',
@@ -47,6 +62,9 @@ setup(name='zope.site',
           'Programming Language :: Python :: 2',
           'Programming Language :: Python :: 2.6',
           'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python :: 3',
+          'Programming Language :: Python :: 3.3',
+          'Programming Language :: Python :: Implementation :: CPython',
           'Natural Language :: English',
           'Operating System :: OS Independent',
           'Topic :: Internet :: WWW/HTTP',
@@ -62,18 +80,29 @@ setup(name='zope.site',
               'zope.configuration',
               'zope.security[zcml]',
               'zope.testing',
+              'ZODB',
               ]),
       install_requires=[
           'setuptools',
           'zope.annotation',
-          'zope.container',
-          'zope.security',
+          'zope.container>=4.0.0a1',
+          'zope.security>=4.0.0a3',
           'zope.component>=3.8.0',
           'zope.event',
           'zope.interface',
           'zope.lifecycleevent',
           'zope.location>=3.7.0',
           ],
+      tests_require = [
+          'zope.testing',
+          'zope.testrunner',
+          'zope.component[zcml]',
+          'zope.configuration',
+          'zope.security[zcml]',
+          'zope.testing',
+          'ZODB',
+          ],
+      test_suite = '__main__.alltests',
       include_package_data = True,
       zip_safe = False,
       )

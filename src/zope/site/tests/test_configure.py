@@ -24,7 +24,7 @@ class ZCMLTest(unittest.TestCase):
         try:
             zope.configuration.xmlconfig.XMLConfig(
                 'configure.zcml', zope.site)()
-        except Exception, e:
+        except Exception as e:
             self.fail(e)
 
     def test_configure_should_register_n_components(self):

@@ -23,11 +23,11 @@ As the root folder is a site, the ++etc++site object appears:
   <LocalSiteManager ++etc++site>
   >>> list(fs_folder.__iter__())
   ['++etc++site']
-  >>> fs_folder.values()
+  >>> list(fs_folder.values())
   [<LocalSiteManager ++etc++site>]
   >>> len(fs_folder)
   1
-  >>> fs_folder.items()
+  >>> list(fs_folder.items())
   [('++etc++site', <LocalSiteManager ++etc++site>)]
   >>> '++etc++site' in fs_folder
   True
@@ -39,7 +39,7 @@ Let's add another folder to see how a non-site folder behaves:
 
 The site folder now contains the new folder:
 
-  >>> fs_folder.keys()
+  >>> list(fs_folder.keys())
   [u'test', '++etc++site']
   >>> fs_folder.get('test')
   <zope.site.folder.Folder object at 0x...>
@@ -47,11 +47,11 @@ The site folder now contains the new folder:
   <zope.site.folder.Folder object at 0x...>
   >>> list(fs_folder.__iter__())
   [u'test', '++etc++site']
-  >>> fs_folder.values()
+  >>> list(fs_folder.values())
   [<zope.site.folder.Folder object at 0x...>, <LocalSiteManager ++etc++site>]
   >>> len(fs_folder)
   2
-  >>> fs_folder.items()
+  >>> list(fs_folder.items())
   [(u'test', <zope.site.folder.Folder object at 0x...>),
    ('++etc++site', <LocalSiteManager ++etc++site>)]
   >>> 'test' in fs_folder
