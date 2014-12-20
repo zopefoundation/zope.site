@@ -1,5 +1,6 @@
 # manual (marker for update script to not modify this file)
 language: python
+sudo: false
 python:
     - 2.6
     - 2.7
