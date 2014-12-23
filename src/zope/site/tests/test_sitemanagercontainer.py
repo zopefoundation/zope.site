@@ -73,7 +73,7 @@ class SiteManagerContainerTest(unittest.TestCase):
         container.getSiteManager()['child'] = Dummy()
 
         del self.root['container']
-        self.assert_(removed_called)
+        self.assertTrue(removed_called)
 
     def test_delete_when_smc_has_no_sitemanager(self):
         container = SiteManagerContainer()

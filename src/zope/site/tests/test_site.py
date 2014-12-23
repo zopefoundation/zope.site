@@ -95,11 +95,11 @@ class BaseTestSiteManagerContainer(unittest.TestCase):
 
     def test_get_and_set(self):
         smc = self.makeTestObject()
-        self.failIf(ISite.providedBy(smc))
+        self.assertFalse(ISite.providedBy(smc))
         sm = site.LocalSiteManager(smc)
         smc.setSiteManager(sm)
-        self.failUnless(ISite.providedBy(smc))
-        self.failUnless(smc.getSiteManager() is sm)
+        self.assertTrue(ISite.providedBy(smc))
+        self.assertTrue(smc.getSiteManager() is sm)
         zope.interface.verify.verifyObject(ISite, smc)
 
     def test_set_w_bogus_value(self):
