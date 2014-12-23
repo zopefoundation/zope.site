@@ -22,7 +22,7 @@ import zope.location.interfaces
 
 from zope.annotation.interfaces import IAttributeAnnotatable
 
-                    
+
 class INewLocalSite(zope.interface.Interface):
     """Event: a local site was created
     """
@@ -68,7 +68,7 @@ class ILocalSiteManager(zope.component.interfaces.IComponents):
         automatically called by `setNext()`. To remove a registry from the
         tree, use `sub.setNext(None)` instead!
         """
-    
+
 
 class ISiteManagementFolder(zope.container.interfaces.IContainer):
     """Component and component registration containers."""
@@ -76,10 +76,12 @@ class ISiteManagementFolder(zope.container.interfaces.IContainer):
     zope.container.constraints.containers(
         ILocalSiteManager, '.ISiteManagementFolder')
 
+
 class IFolder(zope.container.interfaces.IContainer,
               zope.component.interfaces.IPossibleSite,
               IAttributeAnnotatable):
     """The standard Zope Folder object interface."""
+
 
 class IRootFolder(IFolder, zope.location.interfaces.IRoot):
     """The standard Zope root Folder object interface."""

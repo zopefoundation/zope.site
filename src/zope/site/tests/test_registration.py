@@ -36,6 +36,7 @@ from zope import interface
 class IFoo(interface.Interface):
     pass
 
+
 @interface.implementer(IFoo)
 class Foo(persistent.Persistent, zope.container.contained.Contained):
     name = ''
@@ -45,20 +46,24 @@ class Foo(persistent.Persistent, zope.container.contained.Contained):
     def __repr__(self):
         return 'Foo(%r)' % self.name
 
+
 def setUp(test):
     placelesssetup.setUp(test)
     test.globs['showwarning'] = warnings.showwarning
     warnings.showwarning = lambda *a, **k: None
 
+
 def tearDown(test):
     warnings.showwarning = test.globs['showwarning']
     placelesssetup.tearDown(test)
+
 
 def oldfs():
     return FileStorage(
         os.path.join(os.path.dirname(__file__), 'gen3.fs'),
         read_only=True,
-        )
+    )
+
 
 # Work around a bug in ZODB
 # XXX fix ZODB
@@ -70,21 +75,26 @@ class FileStorage(ZODB.FileStorage.FileStorage):
             last = self._oid
             d = ord(last[-1])
             if d < 255:  # fast path for the usual case
-                last = last[:-1] + chr(d+1)
+                last = last[:-1] + chr(d + 1)
             else:        # there's a carry out of the last byte
+                # XXX: bug?  _structunpack is not defined
                 last_as_long, = _structunpack(">Q", last)
                 last = _structpack(">Q", last_as_long + 1)
             self._oid = last
             return last
         finally:
-             self._lock_release()
+            self._lock_release()
+
 
 class GlobalRegistry:
     pass
 
+
 base = zope.component.globalregistry.GlobalAdapterRegistry(
     GlobalRegistry, 'adapters')
 GlobalRegistry.adapters = base
+
+
 def clear_base():
     base.__init__(GlobalRegistry, 'adapters')
 
@@ -146,9 +156,10 @@ Cleanup:
 
     """
 
+
 def test_suite():
     suite = unittest.TestSuite((
         doctest.DocTestSuite(setUp=setUp, tearDown=tearDown)
-        ))
+    ))
     return suite
 

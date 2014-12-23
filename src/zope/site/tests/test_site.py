@@ -28,9 +28,11 @@ from zope.site import interfaces
 from zope import site
 from zope.site import testing
 
+
 @zope.interface.implementer(interfaces.ILocalSiteManager)
 class SiteManagerStub(object):
     pass
+
 
 class CustomFolder(folder.Folder):
 
@@ -39,7 +41,7 @@ class CustomFolder(folder.Folder):
         super(CustomFolder, self).__init__()
 
     def __repr__(self):
-        return '<%s %s>' %(self.__class__.__name__, self.__name__)
+        return '<%s %s>' % (self.__class__.__name__, self.__name__)
 
 
 def test_SiteManagerAdapter():
@@ -80,6 +82,7 @@ def test_SiteManagerAdapter():
       True
     """
 
+
 class BaseTestSiteManagerContainer(unittest.TestCase):
     """This test is for objects that don't have site managers by
     default and that always give back the site manager they were
@@ -103,7 +106,7 @@ class BaseTestSiteManagerContainer(unittest.TestCase):
         zope.interface.verify.verifyObject(ISite, smc)
 
     def test_set_w_bogus_value(self):
-        smc=self.makeTestObject()
+        smc = self.makeTestObject()
         self.assertRaises(Exception, smc.setSiteManager, self)
 
 
@@ -112,8 +115,10 @@ class SiteManagerContainerTest(BaseTestSiteManagerContainer):
         from zope.site import SiteManagerContainer
         return SiteManagerContainer()
 
+
 def setUp(test):
     testing.siteSetUp()
+
 
 def tearDown(test):
     testing.siteTearDown()
@@ -128,7 +133,7 @@ class Layer(object):
 
 def test_suite():
     site_suite = doctest.DocFileSuite('../site.txt',
-                                       setUp=setUp, tearDown=tearDown)
+                                      setUp=setUp, tearDown=tearDown)
     # XXX Isolate the site.txt tests within their own layer as they do some
     # component registration.
     site_suite.layer = Layer
@@ -137,5 +142,5 @@ def test_suite():
         doctest.DocTestSuite(),
         unittest.makeSuite(SiteManagerContainerTest),
         site_suite,
-        ))
+    ))
 

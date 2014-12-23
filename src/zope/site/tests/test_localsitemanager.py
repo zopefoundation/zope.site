@@ -32,7 +32,7 @@ class TestLocalSiteManager(unittest.TestCase):
         self.util = object()
         self.root = Folder()
         self.root['site'] = Folder()
-        subfolder  = self.root['site']
+        subfolder = self.root['site']
         subfolder.setSiteManager(site.LocalSiteManager(subfolder))
         subfolder.getSiteManager().registerUtility(self.util, I1)
 
@@ -50,7 +50,8 @@ class TestLocalSiteManager(unittest.TestCase):
         self.assertTrue(
             self.root['copied_site'].getSiteManager().getUtility(I1) is not self.util)
 
+
 def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(TestLocalSiteManager),
-        ))
+    ))

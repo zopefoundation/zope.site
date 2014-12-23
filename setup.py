@@ -21,8 +21,10 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
 
 def alltests():
     import os
@@ -39,6 +41,7 @@ def alltests():
     suites = list(zope.testrunner.find.find_suites(options))
     return unittest.TestSuite(suites)
 
+
 setup(name='zope.site',
       version='4.0.0a2.dev0',
       author='Zope Foundation and Contributors',
@@ -51,9 +54,9 @@ setup(name='zope.site',
           read('src', 'zope', 'site', 'site.txt')
           + '\n\n' +
           read('CHANGES.txt')
-          ),
-      keywords = "zope component architecture local",
-      classifiers = [
+      ),
+      keywords="zope component architecture local",
+      classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Web Environment',
           'Intended Audience :: Developers',
@@ -72,7 +75,7 @@ setup(name='zope.site',
       url='http://pypi.python.org/pypi/zope.site',
       license='ZPL 2.1',
       packages=find_packages('src'),
-      package_dir = {'': 'src'},
+      package_dir={'': 'src'},
       namespace_packages=['zope'],
       extras_require=dict(
           test=[
@@ -81,7 +84,7 @@ setup(name='zope.site',
               'zope.security[zcml]',
               'zope.testing',
               'ZODB',
-              ]),
+          ]),
       install_requires=[
           'setuptools',
           'zope.annotation',
@@ -92,17 +95,17 @@ setup(name='zope.site',
           'zope.interface',
           'zope.lifecycleevent',
           'zope.location>=3.7.0',
-          ],
-      tests_require = [
+      ],
+      tests_require=[
           'ZODB',
           'zope.component[zcml]',
           'zope.configuration',
           'zope.security[zcml]',
           'zope.testing',
           'zope.testrunner',
-          ],
-      test_suite = '__main__.alltests',
-      include_package_data = True,
-      zip_safe = False,
+      ],
+      test_suite='__main__.alltests',
+      include_package_data=True,
+      zip_safe=False,
       )
 

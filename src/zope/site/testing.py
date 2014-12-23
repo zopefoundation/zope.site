@@ -32,7 +32,7 @@ checker = renormalizing.RENormalizing([
      r"\1"),
     (re.compile('u(".*?")'),
      r"\1"),
-    ])
+])
 
 
 def createSiteManager(folder, setsite=False):
@@ -41,6 +41,7 @@ def createSiteManager(folder, setsite=False):
     if setsite:
         zope.component.hooks.setSite(folder)
     return folder.getSiteManager()
+
 
 def addUtility(sitemanager, name, iface, utility, suffix=''):
     """Add a utility to a site manager
@@ -54,6 +55,7 @@ def addUtility(sitemanager, name, iface, utility, suffix=''):
     sitemanager.registerUtility(utility, iface, name)
     return utility
 
+
 def siteSetUp(site=False):
     zope.container.testing.setUp()
     zope.component.hooks.setHooks()
@@ -65,6 +67,7 @@ def siteSetUp(site=False):
         site = rootFolder()
         createSiteManager(site, setsite=True)
         return site
+
 
 def siteTearDown():
     zope.container.testing.tearDown()

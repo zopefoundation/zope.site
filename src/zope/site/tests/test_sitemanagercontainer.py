@@ -33,6 +33,8 @@ class Dummy(object):
 
 
 removed_called = False
+
+
 def removed_event(obj, event):
     global removed_called
     removed_called = True
@@ -41,7 +43,7 @@ def removed_event(obj, event):
 def dispatch_event(obj, event):
     sm = obj._sm
     if sm is not None:
-        for k,v in sm.items():
+        for k, v in sm.items():
             notify(ObjectRemovedEvent(v, sm, k))
 
 

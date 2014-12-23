@@ -90,6 +90,7 @@ class SiteManagerContainer(Contained):
             zope.interface.directlyProvidedBy(self))
         zope.event.notify(interfaces.NewLocalSite(sm))
 
+
 def _findNextSiteManager(site):
     while True:
         if zope.location.interfaces.IRoot.providedBy(site):
@@ -109,14 +110,15 @@ def _findNextSiteManager(site):
 class _LocalAdapterRegistry(
     zope.component.persistentregistry.PersistentAdapterRegistry,
     zope.location.Location,
-    ):
+):
     pass
+
 
 @zope.interface.implementer(interfaces.ILocalSiteManager)
 class LocalSiteManager(
     BTreeContainer,
     zope.component.persistentregistry.PersistentComponents,
-    ):
+):
     """Local Site Manager implementation"""
 
     subs = ()
@@ -172,7 +174,7 @@ class LocalSiteManager(
     def removeSub(self, sub):
         """See interfaces.registration.ILocatedRegistry"""
         self.subs = tuple(
-            [s for s in self.subs if s is not sub] )
+            [s for s in self.subs if s is not sub])
 
 
 def threadSiteSubscriber(ob, event):
@@ -217,6 +219,7 @@ def SiteManagerAdapter(ob):
             # It is not a location or has no parent, so we return the global
             # site manager
             return zope.component.getGlobalSiteManager()
+
 
 def changeSiteConfigurationAfterMove(site, event):
     """After a site is moved, its site manager links have to be updated."""
