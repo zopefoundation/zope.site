@@ -6,8 +6,7 @@ python:
     - 2.7
     - 3.3
 install:
-    - pip install ZODB-4.0.0dev.tar.gz --use-mirrors
-    - pip install . --use-mirrors
+    - pip install .
 script:
     - python setup.py test -q
 notifications:
