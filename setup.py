@@ -49,12 +49,12 @@ setup(name='zope.site',
       author_email='zope-dev@zope.org',
       description='Local registries for zope component architecture',
       long_description=(
-          read('README.txt')
+          read('README.rst')
           + '\n\n'
           + '.. contents::\n\n' +
           read('src', 'zope', 'site', 'site.txt')
           + '\n\n' +
-          read('CHANGES.txt')
+          read('CHANGES.rst')
       ),
       keywords="zope component architecture local",
       classifiers=[
