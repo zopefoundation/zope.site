@@ -44,7 +44,7 @@ def alltests():
 
 
 setup(name='zope.site',
-      version='4.0.0',
+      version='4.0.1.dev0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Local registries for zope component architecture',
