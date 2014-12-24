@@ -2,10 +2,10 @@
 CHANGES
 =======
 
-4.0.0a2 (unreleased)
---------------------
+4.0.0 (unreleased)
+------------------
 
-- Nothing changed yet.
+- Add support for testing on Travis.
 
 
 4.0.0a1 (2013-02-20)
