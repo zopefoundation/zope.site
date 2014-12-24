@@ -5,6 +5,8 @@ CHANGES
 4.0.0 (unreleased)
 ------------------
 
+- Add support for PyPy.
+
 - Add support for Python 3.4.
 
 - Add support for testing on Travis.
