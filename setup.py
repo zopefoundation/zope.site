@@ -50,8 +50,7 @@ setup(name='zope.site',
       description='Local registries for zope component architecture',
       long_description=(
           read('README.rst')
-          + '\n\n'
-          + '.. contents::\n\n' +
+          + '\n\n' +
           read('src', 'zope', 'site', 'site.txt')
           + '\n\n' +
           read('CHANGES.rst')

@@ -1,6 +1,8 @@
-=====================================
-Zope 3's Local Component Architecture
-=====================================
+``zope.site``
+=============
+
+.. image:: https://travis-ci.org/zopefoundation/zope.site.png?branch=master
+        :target: https://travis-ci.org/zopefoundation/zope.site
 
 This package provides a local and persistent site manager
 implementation, so that one can register local utilities and
