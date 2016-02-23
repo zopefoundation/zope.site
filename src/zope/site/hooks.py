@@ -14,15 +14,5 @@
 """Hooks for getting and setting a site in the thread global namespace.
 """
 __docformat__ = 'restructuredtext'
-
-from zope.component.hooks import (read_property,
-                                  SiteInfo,
-                                  siteinfo,
-                                  setSite,
-                                  getSite,
-                                  getSiteManager,
-                                  adapter_hook,
-                                  setHooks,
-                                  resetHooks,
-                                  setSite,
-                                  clearSite) # BBB
+from zope.deprecation import moved
+moved('zope.component.hooks', 'Version 4.1')

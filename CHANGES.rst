@@ -4,7 +4,8 @@ Changes
 4.0.1 (unreleased)
 ------------------
 
-- TBD
+- Deprecate ``zope.site.hooks`` with ``zope.deprecation``.
+  [thet]
 
 
 4.0.0 (2014-12-24)
