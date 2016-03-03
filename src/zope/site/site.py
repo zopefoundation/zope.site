@@ -41,8 +41,11 @@ from zope.container.contained import Contained
 
 from zope.site import interfaces
 
-# BBB
+
+# BBB. Remove in Version 5.0
 from zope.component.hooks import setSite
+from zope.deprecation import deprecated
+setSite = deprecated(setSite, '``zope.site.site.setSite`` is deprecated and will be removed in zope.site Version 5.0. Use it from ``zope.component.hooks`` instead.')  # noqa
 
 
 @zope.interface.implementer(interfaces.ISiteManagementFolder)

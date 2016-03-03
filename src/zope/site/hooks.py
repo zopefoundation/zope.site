@@ -13,6 +13,6 @@
 ##############################################################################
 """Hooks for getting and setting a site in the thread global namespace.
 """
-__docformat__ = 'restructuredtext'
+# BBB. Remove in Version 5.0
 from zope.deprecation import moved
-moved('zope.component.hooks', 'Version 4.1')
+moved('zope.component.hooks', 'Version 5.0')
