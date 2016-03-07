@@ -4,7 +4,7 @@ Changes
 4.0.1 (unreleased)
 ------------------
 
-- Deprecate ``zope.site.hooks``, ``zope.site.site.setSite`` and ``zope.site.next`` with ``zope.deprecation``.
+- Deprecate ``zope.site.hooks.*``, ``zope.site.site.setSite``, ``zope.site.next.getNextUtility`` and ``zope.site.next.queryNextUtility`` with ``zope.deprecation``.
   These will be removed in zope.site Version 5.0.
   [thet]
 
