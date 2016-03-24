@@ -1,8 +1,10 @@
 Changes
 =======
 
-4.0.1 (unreleased)
+4.1.0 (unreleased)
 ------------------
+
+- Drop support for Python 2.6.
 
 - Deprecate ``zope.site.hooks.*``, ``zope.site.site.setSite``, ``zope.site.next.getNextUtility`` and ``zope.site.next.queryNextUtility`` with ``zope.deprecation``.
   These will be removed in zope.site Version 5.0.
