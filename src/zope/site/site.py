@@ -50,11 +50,15 @@ setSite = deprecated(setSite, '``zope.site.site.setSite`` is deprecated and will
 
 @zope.interface.implementer(interfaces.ISiteManagementFolder)
 class SiteManagementFolder(BTreeContainer):
-    pass
+    """Implementation of a :class:`~.ISiteManagementFolder`"""
 
 
 @zope.interface.implementer(IDirectoryFactory)
 class SMFolderFactory(object):
+    """
+    Implementation of a :class:`~.IDirectoryFactory` that creates
+    :class:`SiteManagementFolder`
+    """
 
     def __init__(self, context):
         self.context = context
@@ -67,7 +71,7 @@ class SMFolderFactory(object):
 class SiteManagerContainer(Contained):
     """Implement access to the site manager (++etc++site).
 
-    This is a mix-in that implements the IPossibleSite
+    This is a mix-in that implements the :class:`~.IPossibleSite`
     interface; for example, it is used by the Folder implementation.
     """
 
@@ -122,7 +126,7 @@ class LocalSiteManager(
     BTreeContainer,
     zope.component.persistentregistry.PersistentComponents,
 ):
-    """Local Site Manager implementation"""
+    """Local Site Manager (:class:`~.ILocalSiteManager`) implementation"""
 
     subs = ()
 
@@ -208,7 +212,7 @@ else:
 @zope.component.adapter(zope.interface.Interface)
 @zope.interface.implementer(zope.component.interfaces.IComponentLookup)
 def SiteManagerAdapter(ob):
-    """An adapter from ILocation to IComponentLookup.
+    """An adapter from :class:`~.ILocation` to :class:`~.IComponentLookup`.
 
     The ILocation is interpreted flexibly, we just check for
     ``__parent__``.
@@ -225,7 +229,12 @@ def SiteManagerAdapter(ob):
 
 
 def changeSiteConfigurationAfterMove(site, event):
-    """After a site is moved, its site manager links have to be updated."""
+    """
+    After a site is moved, its site manager links have to be
+    updated.
+
+    Subscriber to :class:`~.ISite` objects in a :class:`~.IObjectMovedEvent`.
+    """
     if event.newParent is not None:
         next = _findNextSiteManager(site)
         if next is None:
