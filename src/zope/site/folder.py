@@ -20,10 +20,11 @@ from zope.site.site import SiteManagerContainer
 
 @implementer(IFolder)
 class Folder(zope.container.folder.Folder, SiteManagerContainer):
-    pass
+    """Implementation of :class:`~.IFolder`"""
 
 
 def rootFolder():
+    """Factory for a :class:`~.IRootFolder`"""
     f = Folder()
     directlyProvides(f, IRootFolder)
     return f

@@ -44,7 +44,7 @@ def alltests():
 
 
 setup(name='zope.site',
-      version='4.1.0.dev0',
+      version=read('version.txt').strip(),
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Local registries for zope component architecture',
@@ -74,7 +74,7 @@ setup(name='zope.site',
           'Operating System :: OS Independent',
           'Topic :: Internet :: WWW/HTTP',
           'Framework :: Zope3'],
-      url='http://pypi.python.org/pypi/zope.site',
+      url='http://zopesite.readthedocs.io',
       license='ZPL 2.1',
       packages=find_packages('src'),
       package_dir={'': 'src'},
@@ -111,4 +111,3 @@ setup(name='zope.site',
       include_package_data=True,
       zip_safe=False,
       )
-

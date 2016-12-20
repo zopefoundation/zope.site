@@ -6,3 +6,5 @@ eggs/
 *.pyc
 __pycache__
 .tox/
+
+docs/_build
