@@ -64,9 +64,6 @@ class SiteManagerContainerTest(unittest.TestCase):
     def tearDown(self):
         zope.site.testing.siteTearDown()
 
-    def removed_event(self, event):
-        self.removed_called = True
-
     def test_delete_smc_should_propagate_removed_event(self):
         container = SiteManagerContainer()
         self.root['container'] = container
@@ -81,11 +78,8 @@ class SiteManagerContainerTest(unittest.TestCase):
         container = SiteManagerContainer()
         self.root['container'] = container
 
-        try:
-            del self.root['container']
-        except Exception as e:
-            self.fail(e)
+        del self.root['container']
 
 
 def test_suite():
-    return unittest.makeSuite(SiteManagerContainerTest)
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
