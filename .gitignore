@@ -6,5 +6,6 @@ eggs/
 *.pyc
 __pycache__
 .tox/
-
+.coverage
+htmlcov/
 docs/_build

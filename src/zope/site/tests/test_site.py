@@ -132,7 +132,7 @@ class Layer(object):
 
 
 def test_suite():
-    site_suite = doctest.DocFileSuite('../site.txt',
+    site_suite = doctest.DocFileSuite('../site.rst',
                                       setUp=setUp, tearDown=tearDown)
     # XXX Isolate the site.txt tests within their own layer as they do some
     # component registration.
@@ -143,4 +143,3 @@ def test_suite():
         unittest.makeSuite(SiteManagerContainerTest),
         site_suite,
     ))
-
