@@ -1,20 +1,24 @@
-Changes
-=======
+=========
+ Changes
+=========
 
 4.1.0 (unreleased)
-------------------
+==================
 
-- Add support for Python 3.5.
+- Add support for Python 3.5 and 3.6.
 
-- Drop support for Python 2.6.
+- Drop support for Python 2.6 and 3.3.
 
 - Deprecate ``zope.site.hooks.*``, ``zope.site.site.setSite``,
   ``zope.site.next.getNextUtility`` and ``zope.site.next.queryNextUtility``
   with ``zope.deprecation``.  These will be removed in version 5.0.
+  They all have replacements in ``zope.component``.
+
+- Reach 100% test coverage and ensure we remain there.
 
 
 4.0.0 (2014-12-24)
-------------------
+==================
 
 - Add support for PyPy.
 
@@ -24,7 +28,7 @@ Changes
 
 
 4.0.0a1 (2013-02-20)
---------------------
+====================
 
 - Added support for Python 3.3.
 
@@ -37,30 +41,30 @@ Changes
 
 
 3.9.2 (2010-09-25)
-------------------
+==================
 
 - Added not declared, but needed test dependency on `zope.testing`.
 
 3.9.1 (2010-04-30)
-------------------
+==================
 
 - Removed use of 'zope.testing.doctest' in favor of stdlib's 'doctest.
 
 - Removed use of 'zope.testing.doctestunit' in favor of stdlib's 'doctest.
 
 3.9.0 (2009-12-29)
-------------------
+==================
 
 - Avoid a test dependency on zope.copypastemove by testing the correct
   persistent behavior of a site manager using the normal pickle module.
 
 3.8.0 (2009-12-15)
-------------------
+==================
 
 - Removed functional testing setup and dependency on zope.app.testing.
 
 3.7.1 (2009-11-18)
-------------------
+==================
 
 - Moved the zope.site.hooks functionality to zope.component.hooks as it isn't
   actually dealing with zope.site's concept of a site.
@@ -69,7 +73,7 @@ Changes
   there from zope.location.
 
 3.7.0 (2009-09-29)
-------------------
+==================
 
 - Cleaned up the undeclared dependency on zope.app.publication by moving the
   two relevant subscriber registrations and their tests to that package.
@@ -80,7 +84,7 @@ Changes
 - Demoted zope.configuration to a testing dependency.
 
 3.6.4 (2009-09-01)
-------------------
+==================
 
 - Set __parent__ and __name__ in the LocalSiteManager's constructor
   after calling constructor of its superclasses, so __name__ doesn't
@@ -93,13 +97,13 @@ Changes
   adding them anymore.
 
 3.6.3 (2009-07-27)
-------------------
+==================
 
 - Propagate an ObjectRemovedEvent to the SiteManager upon removal of a
   SiteManagerContainer.
 
 3.6.2 (2009-07-24)
-------------------
+==================
 
 - Fixed tests to pass with latest packages.
 
@@ -113,7 +117,7 @@ Changes
   strongly recommended to update your imports.
 
 3.6.1 (2009-02-28)
-------------------
+==================
 
 - Import symbols moved from zope.traversing to zope.location from the new
   location.
@@ -134,12 +138,12 @@ Changes
 - Remove old unused code. Update package description.
 
 3.6.0 (2009-01-31)
-------------------
+==================
 
 - Use zope.container instead of zope.app.container.
 
 3.5.1 (2009-01-27)
-------------------
+==================
 
 - Extracted from zope.app.component (trunk, 3.5.1 under development)
   as part of an effort to clean up dependencies between Zope packages.

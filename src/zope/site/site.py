@@ -80,8 +80,7 @@ class SiteManagerContainer(Contained):
     def getSiteManager(self):
         if self._sm is not None:
             return self._sm
-        else:
-            raise ComponentLookupError('no site manager defined')
+        raise ComponentLookupError('no site manager defined')
 
     def setSiteManager(self, sm):
         if zope.component.interfaces.ISite.providedBy(self):
@@ -115,16 +114,16 @@ def _findNextSiteManager(site):
 
 
 class _LocalAdapterRegistry(
-    zope.component.persistentregistry.PersistentAdapterRegistry,
-    zope.location.Location,
+        zope.component.persistentregistry.PersistentAdapterRegistry,
+        zope.location.Location,
 ):
     pass
 
 
 @zope.interface.implementer(interfaces.ILocalSiteManager)
 class LocalSiteManager(
-    BTreeContainer,
-    zope.component.persistentregistry.PersistentComponents,
+        BTreeContainer,
+        zope.component.persistentregistry.PersistentComponents,
 ):
     """Local Site Manager (:class:`~.ILocalSiteManager`) implementation"""
 
@@ -136,13 +135,13 @@ class LocalSiteManager(
         for base in self.__bases__:
             if ((base not in bases)
                 and interfaces.ILocalSiteManager.providedBy(base)
-                ):
+            ):
                 base.removeSub(self)
 
         for base in bases:
             if ((base not in self.__bases__)
                 and interfaces.ILocalSiteManager.providedBy(base)
-                ):
+            ):
                 base.addSub(self)
 
         super(LocalSiteManager, self)._setBases(bases)
@@ -203,7 +202,7 @@ def clearThreadSiteSubscriber(event):
 clearSite = zope.component.hooks.setSite
 try:
     from zope.testing.cleanup import addCleanUp
-except ImportError:
+except ImportError: # pragma: no cover
     pass
 else:
     addCleanUp(clearSite)
@@ -258,5 +257,4 @@ def siteManagerContainerRemoved(container, event):
     except ComponentLookupError:
         pass
     else:
-        for ignored in zope.component.subscribers((sm, event), None):
-            pass # work happens during adapter fetch
+        zope.component.handle(sm, event)

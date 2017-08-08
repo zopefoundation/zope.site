@@ -28,7 +28,6 @@ def read(*rnames):
 
 
 def alltests():
-    import os
     import sys
     import unittest
     # use the zope.testrunner machinery to find all the
@@ -42,6 +41,14 @@ def alltests():
     suites = list(zope.testrunner.find.find_suites(options))
     return unittest.TestSuite(suites)
 
+TESTS_REQUIRE = [
+    'ZODB',
+    'zope.component[zcml]',
+    'zope.configuration',
+    'zope.security[zcml]',
+    'zope.testing',
+    'zope.testrunner',
+]
 
 setup(name='zope.site',
       version=read('version.txt').strip(),
@@ -51,7 +58,7 @@ setup(name='zope.site',
       long_description=(
           read('README.rst')
           + '\n\n' +
-          read('src', 'zope', 'site', 'site.txt')
+          read('src', 'zope', 'site', 'site.rst')
           + '\n\n' +
           read('CHANGES.rst')
       ),
@@ -65,28 +72,24 @@ setup(name='zope.site',
           'Programming Language :: Python :: 2',
           'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.3',
           'Programming Language :: Python :: 3.4',
           'Programming Language :: Python :: 3.5',
+          'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: Implementation :: CPython',
           'Programming Language :: Python :: Implementation :: PyPy',
           'Natural Language :: English',
           'Operating System :: OS Independent',
           'Topic :: Internet :: WWW/HTTP',
-          'Framework :: Zope3'],
+          'Framework :: Zope3',
+      ],
       url='http://zopesite.readthedocs.io',
       license='ZPL 2.1',
       packages=find_packages('src'),
       package_dir={'': 'src'},
       namespace_packages=['zope'],
-      extras_require=dict(
-          test=[
-              'zope.component[zcml]',
-              'zope.configuration',
-              'zope.security[zcml]',
-              'zope.testing',
-              'ZODB',
-          ]),
+      extras_require={
+          'test': TESTS_REQUIRE,
+      },
       install_requires=[
           'setuptools',
           'zope.annotation',
@@ -99,15 +102,8 @@ setup(name='zope.site',
           'zope.lifecycleevent',
           'zope.location',
       ],
-      tests_require=[
-          'ZODB',
-          'zope.component[zcml]',
-          'zope.configuration',
-          'zope.security[zcml]',
-          'zope.testing',
-          'zope.testrunner',
-      ],
+      tests_require=TESTS_REQUIRE,
       test_suite='__main__.alltests',
       include_package_data=True,
       zip_safe=False,
-      )
+)

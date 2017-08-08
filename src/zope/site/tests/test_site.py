@@ -40,7 +40,7 @@ class CustomFolder(folder.Folder):
         self.__name__ = name
         super(CustomFolder, self).__init__()
 
-    def __repr__(self):
+    def __repr__(self): # pragma: no cover
         return '<%s %s>' % (self.__class__.__name__, self.__name__)
 
 
@@ -83,7 +83,7 @@ def test_SiteManagerAdapter():
     """
 
 
-class BaseTestSiteManagerContainer(unittest.TestCase):
+class TestSiteManagerContainer(unittest.TestCase):
     """This test is for objects that don't have site managers by
     default and that always give back the site manager they were
     given.
@@ -91,6 +91,10 @@ class BaseTestSiteManagerContainer(unittest.TestCase):
     Subclasses need to define a method, 'makeTestObject', that takes no
     arguments and that returns a new site manager
     container that has no site manager."""
+
+    def makeTestObject(self):
+        from zope.site import SiteManagerContainer
+        return SiteManagerContainer()
 
     def test_IPossibleSite_verify(self):
         zope.interface.verify.verifyObject(IPossibleSite,
@@ -110,10 +114,63 @@ class BaseTestSiteManagerContainer(unittest.TestCase):
         self.assertRaises(Exception, smc.setSiteManager, self)
 
 
-class SiteManagerContainerTest(BaseTestSiteManagerContainer):
-    def makeTestObject(self):
-        from zope.site import SiteManagerContainer
-        return SiteManagerContainer()
+    def test_get_no_manager(self):
+        smc = self.makeTestObject()
+        with self.assertRaises(LookupError):
+            smc.getSiteManager()
+
+
+class TestSMFolderFactory(unittest.TestCase):
+
+    def test_call(self):
+        from zope.site.site import SMFolderFactory
+        from zope.site.site import SiteManagementFolder
+        result = SMFolderFactory(None)('')
+        self.assertIsInstance(result, SiteManagementFolder)
+
+
+class TestSubscriber(unittest.TestCase):
+
+    def getSiteManager(self):
+        return self
+
+    def test_set_and_clear(self):
+        from zope.site.site import threadSiteSubscriber
+        from zope.site.site import clearThreadSiteSubscriber
+        from zope.component.hooks import getSite
+
+        threadSiteSubscriber(self, None)
+        self.assertIs(self, getSite())
+        clearThreadSiteSubscriber(None)
+        self.assertIsNone(getSite())
+
+    def test_removed(self):
+        from zope.site.site import siteManagerContainerRemoved
+        from zope.site.site import ComponentLookupError
+        siteManagerContainerRemoved(self, None)
+
+        # And a raise is ignored too
+        def gsm():
+            raise ComponentLookupError()
+
+        self.getSiteManager = gsm
+        siteManagerContainerRemoved(self, None)
+
+
+class TestTesting(unittest.TestCase):
+
+    def setUp(self):
+        self.sm = testing.siteSetUp(True)
+
+    def tearDown(self):
+        testing.siteTearDown()
+
+    def test_add_utility(self):
+        testing.addUtility(self.sm.getSiteManager(),
+                           'Name',
+                           zope.interface.Interface,
+                           self)
+        self.assertIn('Name', self.sm.getSiteManager()['default'])
 
 
 def setUp(test):
@@ -132,7 +189,7 @@ class Layer(object):
 
 
 def test_suite():
-    site_suite = doctest.DocFileSuite('../site.txt',
+    site_suite = doctest.DocFileSuite('../site.rst',
                                       setUp=setUp, tearDown=tearDown)
     # XXX Isolate the site.txt tests within their own layer as they do some
     # component registration.
@@ -140,7 +197,6 @@ def test_suite():
 
     return unittest.TestSuite((
         doctest.DocTestSuite(),
-        unittest.makeSuite(SiteManagerContainerTest),
         site_suite,
+        unittest.defaultTestLoader.loadTestsFromName(__name__),
     ))
-

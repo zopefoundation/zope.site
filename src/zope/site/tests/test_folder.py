@@ -1,10 +1,11 @@
-from unittest import TestSuite, makeSuite
+
 
 import doctest
+import unittest
 
 from zope.site.folder import Folder
 from zope.site.testing import siteSetUp, siteTearDown, checker
-from zope.site.tests.test_site import BaseTestSiteManagerContainer
+from zope.site.tests.test_site import TestSiteManagerContainer
 
 
 def setUp(test=None):
@@ -15,7 +16,7 @@ def tearDown(test=None):
     siteTearDown()
 
 
-class FolderTest(BaseTestSiteManagerContainer):
+class FolderTest(TestSiteManagerContainer):
 
     def makeTestObject(self):
         return Folder()
@@ -23,8 +24,8 @@ class FolderTest(BaseTestSiteManagerContainer):
 
 def test_suite():
     flags = doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE
-    return TestSuite((
-        makeSuite(FolderTest),
+    return unittest.TestSuite((
+        unittest.defaultTestLoader.loadTestsFromName(__name__),
         doctest.DocTestSuite('zope.site.folder',
                              setUp=setUp, tearDown=tearDown),
         doctest.DocFileSuite("folder.txt",
