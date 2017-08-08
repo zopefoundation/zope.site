@@ -12,6 +12,9 @@
 - Deprecate ``zope.site.hooks.*``, ``zope.site.site.setSite``,
   ``zope.site.next.getNextUtility`` and ``zope.site.next.queryNextUtility``
   with ``zope.deprecation``.  These will be removed in version 5.0.
+  They all have replacements in ``zope.component``.
+
+- Reach 100% test coverage and ensure we remain there.
 
 
 4.0.0 (2014-12-24)
