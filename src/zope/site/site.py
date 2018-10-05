@@ -182,6 +182,8 @@ class LocalSiteManager(
         self.subs = tuple(
             [s for s in self.subs if s is not sub])
 
+    def _p_repr(self):
+        return zope.component.persistentregistry.PersistentComponents.__repr__(self)
 
 def threadSiteSubscriber(ob, event):
     """A subscriber to BeforeTraverseEvent
