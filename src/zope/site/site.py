@@ -173,6 +173,9 @@ class LocalSiteManager(
         self.adapters.__name__ = u'adapters'
         self.utilities.__name__ = u'utilities'
 
+    def _p_repr(self):
+        return zope.component.persistentregistry.PersistentComponents.__repr__(self)
+
     def addSub(self, sub):
         """See interfaces.registration.ILocatedRegistry"""
         self.subs += (sub, )
