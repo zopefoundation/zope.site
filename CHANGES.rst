@@ -2,14 +2,15 @@
  Changes
 =========
 
-4.3 (unreleased)
-================
+4.2.1 (unreleased)
+==================
 
-- Nothing changed yet.
+- Use current location for `UtilityRegistration` and `IUtilityRegistration`
+  classes.
 
 
-4.2 (2018-10-09)
-================
+4.2.0 (2018-10-09)
+==================
 
 - Add support for Python 3.7.
 

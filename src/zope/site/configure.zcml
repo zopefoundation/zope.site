@@ -25,10 +25,10 @@
                    zope.container.interfaces.IWriteContainer" />
   </class>
 
-  <class class="zope.component.registry.UtilityRegistration">
+  <class class="zope.interface.registry.UtilityRegistration">
     <require
         permission="zope.ManageSite"
-        interface="zope.component.interfaces.IUtilityRegistration"
+        interface="zope.interface.interfaces.IUtilityRegistration"
         />
   </class>
 
