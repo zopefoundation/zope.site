@@ -2,7 +2,7 @@
  Changes
 =========
 
-4.2.1 (unreleased)
+4.2.1 (2018-10-11)
 ==================
 
 - Use current location for `UtilityRegistration` and `IUtilityRegistration`
