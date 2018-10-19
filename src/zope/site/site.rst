@@ -73,13 +73,13 @@ There is also an adapter you can use to get the next site manager from any
 location:
 
   >>> myfolder['mysubfolder'] = folder.Folder()
-  >>> import zope.component
-  >>> zope.component.interfaces.IComponentLookup(myfolder['mysubfolder']) is sm
+  >>> import zope.interface.interfaces
+  >>> zope.interface.interfaces.IComponentLookup(myfolder['mysubfolder']) is sm
   True
 
 If the location passed is a site, the site manager of that site is returned:
 
-  >>> zope.component.interfaces.IComponentLookup(myfolder) is sm
+  >>> zope.interface.interfaces.IComponentLookup(myfolder) is sm
   True
 
 

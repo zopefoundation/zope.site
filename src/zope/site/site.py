@@ -32,7 +32,8 @@ import zope.component.interfaces
 import zope.location
 import zope.location.interfaces
 
-from zope.component.interfaces import ComponentLookupError
+from zope.interface.interfaces import IComponentLookup
+from zope.interface.interfaces import ComponentLookupError
 from zope.lifecycleevent import ObjectCreatedEvent
 from zope.filerepresentation.interfaces import IDirectoryFactory
 
@@ -86,7 +87,7 @@ class SiteManagerContainer(Contained):
         if zope.component.interfaces.ISite.providedBy(self):
             raise TypeError("Already a site")
 
-        if zope.component.interfaces.IComponentLookup.providedBy(sm):
+        if IComponentLookup.providedBy(sm):
             self._sm = sm
         else:
             raise ValueError('setSiteManager requires an IComponentLookup')
@@ -212,7 +213,7 @@ else:
 
 
 @zope.component.adapter(zope.interface.Interface)
-@zope.interface.implementer(zope.component.interfaces.IComponentLookup)
+@zope.interface.implementer(IComponentLookup)
 def SiteManagerAdapter(ob):
     """An adapter from :class:`~.ILocation` to :class:`~.IComponentLookup`.
 

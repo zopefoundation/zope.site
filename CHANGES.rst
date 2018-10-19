@@ -5,14 +5,15 @@
 4.2.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix more ``DeprecationWarnings``. See `issue 10
+  <https://github.com/zopefoundation/zope.site/issues/10>`_.
 
 
 4.2.1 (2018-10-11)
 ==================
 
-- Use current location for `UtilityRegistration` and `IUtilityRegistration`
-  classes.
+- Use current import location for ``UtilityRegistration`` and ``IUtilityRegistration``
+  classes to avoid ``DeprecationWarning``.
 
 
 4.2.0 (2018-10-09)
@@ -33,7 +34,7 @@
   with ``zope.deprecation``.  These will be removed in version 5.0.
   They all have replacements in ``zope.component``.
 
-- Added implementation for _p_repr in LocalSiteManager. 
+- Added implementation for _p_repr in LocalSiteManager.
   For further information see github issue #8.
 
 - Reach 100% test coverage and ensure we remain there.

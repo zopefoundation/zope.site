@@ -14,16 +14,23 @@
 # Test BWC shims
 
 import unittest
+import warnings
 
 class TestNext(unittest.TestCase):
 
     def test_import(self):
-        from zope.site import next as FUT
-        self.assertTrue(hasattr(FUT, 'queryNextUtility'))
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore')
+
+            from zope.site import next as FUT
+            self.assertTrue(hasattr(FUT, 'queryNextUtility'))
 
 
 class TestHooks(unittest.TestCase):
 
     def test_import(self):
-        from zope.site import hooks as FUT
-        self.assertTrue(hasattr(FUT, 'setSite'))
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore')
+
+            from zope.site import hooks as FUT
+            self.assertTrue(hasattr(FUT, 'setSite'))
