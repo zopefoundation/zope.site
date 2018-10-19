@@ -2,7 +2,7 @@
  Changes
 =========
 
-4.2.2 (unreleased)
+4.2.2 (2018-10-19)
 ==================
 
 - Fix more ``DeprecationWarnings``. See `issue 10
