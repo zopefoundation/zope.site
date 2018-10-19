@@ -15,7 +15,7 @@
 """
 
 import zope.interface
-import zope.component.interfaces
+import zope.interface.interfaces
 import zope.container.interfaces
 import zope.container.constraints
 import zope.location.interfaces
@@ -37,7 +37,7 @@ class NewLocalSite(object):
         self.manager = manager
 
 
-class ILocalSiteManager(zope.component.interfaces.IComponents):
+class ILocalSiteManager(zope.interface.interfaces.IComponents):
     """Site Managers act as containers for registerable components.
 
     If a Site Manager is asked for an adapter or utility, it checks for those

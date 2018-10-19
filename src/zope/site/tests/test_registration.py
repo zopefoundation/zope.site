@@ -68,8 +68,8 @@ class Test(unittest.TestCase):
 
         # We want to make sure that we see updates correctly.
 
-        import ZODB.tests.util
-        db = ZODB.tests.util.DB()
+        from ZODB.MappingStorage import DB
+        db = DB()
         tm1 = transaction.TransactionManager()
         c1 = db.open(transaction_manager=tm1)
         r1 = zope.site.site._LocalAdapterRegistry((base,))

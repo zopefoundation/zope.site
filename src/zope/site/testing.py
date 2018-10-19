@@ -20,7 +20,7 @@ import zope.component.interfaces
 import zope.container.interfaces
 import zope.container.testing
 import zope.site.site
-from zope.component.interfaces import IComponentLookup
+from zope.interface.interfaces import IComponentLookup
 from zope.interface import Interface
 from zope.site import LocalSiteManager, SiteManagerAdapter
 from zope.site.folder import rootFolder

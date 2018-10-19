@@ -50,7 +50,7 @@ class FolderSublocations(object):
 
       >>> sm = Contained()
       >>> from zope.interface import directlyProvides
-      >>> from zope.component.interfaces import IComponentLookup
+      >>> from zope.interface.interfaces import IComponentLookup
       >>> directlyProvides(sm, IComponentLookup)
       >>> folder.setSiteManager(sm)
       >>> directlyProvides(folder, zope.component.interfaces.ISite)
