@@ -47,8 +47,9 @@
   with ``zope.deprecation``.  These will be removed in version 5.0.
   They all have replacements in ``zope.component``.
 
-- Added implementation for _p_repr in LocalSiteManager.
-  For further information see github issue #8.
+- Added implementation for _p_repr in LocalSiteManager. For further
+  information see `issue 8
+  <https://github.com/zopefoundation/zope.site/issues/8>`_.
 
 - Reach 100% test coverage and ensure we remain there.
 
