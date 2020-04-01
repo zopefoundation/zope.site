@@ -2,10 +2,15 @@
  Changes
 =========
 
-4.2.3 (unreleased)
+4.4.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Add support for Python 3.8.
+
+- Drop support for Python 3.4.
+
+- Fix tests with zope.interface 5.0. See `issue 12
+  <https://github.com/zopefoundation/zope.site/issues/12>`_.
 
 
 4.2.2 (2018-10-19)

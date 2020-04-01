@@ -117,9 +117,11 @@ You can easily create a new site management folder:
   <class 'zope.site.site.SiteManagementFolder'>
 
 Once you have your site management folder -- let's use the default one -- we
-can register some components. Let's start with a utility:
+can register some components. Let's start with a utility (we define it
+in a ``__module__`` that can be pickled):
 
   >>> import zope.interface
+  >>> __name__ = 'zope.site.tests'
   >>> class IMyUtility(zope.interface.Interface):
   ...     pass
 
@@ -181,8 +183,8 @@ Finally, we can get the adapter for a file:
 
   >>> file = File()
   >>> size = sm.queryAdapter(file, ISized, name='')
-  >>> size.__class__
-  <class 'FileSize'>
+  >>> isinstance(size, FileSize)
+  True
   >>> size.context is file
   True
 
@@ -207,8 +209,8 @@ This also means that you can simply use zope.component to look up your utility
 or the adapter via the interface's `__call__` method:
 
   >>> size = ISized(file)
-  >>> size.__class__
-  <class 'FileSize'>
+  >>> isinstance(size, FileSize)
+  True
   >>> size.context is file
   True
 
@@ -306,12 +308,12 @@ First, make sure that everything is setup correctly in the first place:
   >>> myfolder2.getSiteManager().subs
   ()
 
-Let's now move `myfolder11` from `myfolder` to `myfolder2`:
+Let's now move ``myfolder11`` from ``myfolder`` to ``myfolder2``:
 
   >>> myfolder2['myfolder21'] = myfolder11
   >>> del myfolder['myfolder11']
 
-Now the next site manager for `myfolder11`'s site manager should have changed:
+Now the next site manager for ``myfolder11``'s site manager should have changed:
 
   >>> myfolder21 = myfolder11
   >>> myfolder21.getSiteManager().__bases__ == (myfolder2.getSiteManager(), )
@@ -325,9 +327,7 @@ Make sure that our interfaces and classes are picklable:
 
   >>> import sys
   >>> sys.modules['zope.site.tests'].IMyUtility = IMyUtility
-  >>> IMyUtility.__module__ = 'zope.site.tests'
   >>> sys.modules['zope.site.tests'].MyUtility = MyUtility
-  >>> MyUtility.__module__ = 'zope.site.tests'
 
   >>> from pickle import dumps, loads
   >>> data = dumps(myfolder2['myfolder21'])
