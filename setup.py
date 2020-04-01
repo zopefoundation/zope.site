@@ -37,7 +37,7 @@ TESTS_REQUIRE = [
 ]
 
 setup(name='zope.site',
-      version='4.4.0.dev0',
+      version='4.3.0.dev0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Local registries for zope component architecture',
@@ -95,7 +95,6 @@ setup(name='zope.site',
           'zope.location',
       ],
       tests_require=TESTS_REQUIRE,
-      test_suite='__main__.alltests',
       include_package_data=True,
       zip_safe=False,
       python_requires=', '.join([
