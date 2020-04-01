@@ -178,27 +178,36 @@ class LocalSiteManager(
         return zope.component.persistentregistry.PersistentComponents.__repr__(self)
 
     def addSub(self, sub):
-        """See interfaces.registration.ILocatedRegistry"""
+        """See :meth:`zope.site.interfaces.ILocalSiteManager.addSub`"""
         self.subs += (sub, )
 
     def removeSub(self, sub):
-        """See interfaces.registration.ILocatedRegistry"""
+        """See :meth:`zope.site.interfaces.ILocalSiteManager.removeSub`"""
         self.subs = tuple(
             [s for s in self.subs if s is not sub])
 
 
 def threadSiteSubscriber(ob, event):
-    """A subscriber to BeforeTraverseEvent
+    """A multi-subscriber to `zope.component.interfaces.ISite`
+    and `zope.traversing.interfaces.BeforeTraverseEvent`.
 
     Sets the 'site' thread global if the object traversed is a site.
+
+    .. note:: The ``configure.zcml`` included in this package does *not*
+       install this subscriber. That must be configured separately. ``zope.app.publication``
+       includes such configuration.
     """
     zope.component.hooks.setSite(ob)
 
 
 def clearThreadSiteSubscriber(event):
-    """A subscriber to EndRequestEvent
+    """A subscriber to `zope.publisher.interfaces.EndRequestEvent`
 
     Cleans up the site thread global after the request is processed.
+
+    .. note:: The ``configure.zcml`` included in this package does *not*
+       install this subscriber. That must be configured separately. ``zope.app.publication``
+       includes such configuration.
     """
     clearSite()
 

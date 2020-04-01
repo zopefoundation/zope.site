@@ -20,47 +20,49 @@ from zope.site.site import SiteManagerContainer
 
 @implementer(IFolder)
 class Folder(zope.container.folder.Folder, SiteManagerContainer):
-    """Implementation of :class:`~.IFolder`"""
+    """Implementation of :class:`zope.site.interfaces.IFolder`"""
 
 
 def rootFolder():
-    """Factory for a :class:`~.IRootFolder`"""
+    """Factory for a :class:`zope.site.interfaces.IRootFolder`"""
     f = Folder()
     directlyProvides(f, IRootFolder)
     return f
 
 
 class FolderSublocations(object):
-    """Get the sublocations of a folder
+    """
+    Adapter for an :class:`zope.site.interfaces.IFolder` to
+    :class:`zope.location.interfaces.ISublocations`.
 
-    The subobjects of a folder include it's contents and it's site manager if
-    it is a site.
+    The subobjects of a folder include it's contents and it's site
+    manager if it is a site::
 
-      >>> from zope.container.contained import Contained
-      >>> folder = Folder()
-      >>> folder['ob1'] = Contained()
-      >>> folder['ob2'] = Contained()
-      >>> folder['ob3'] = Contained()
-      >>> subs = list(FolderSublocations(folder).sublocations())
-      >>> subs.remove(folder['ob1'])
-      >>> subs.remove(folder['ob2'])
-      >>> subs.remove(folder['ob3'])
-      >>> subs
-      []
+        >>> from zope.container.contained import Contained
+        >>> folder = Folder()
+        >>> folder['ob1'] = Contained()
+        >>> folder['ob2'] = Contained()
+        >>> folder['ob3'] = Contained()
+        >>> subs = list(FolderSublocations(folder).sublocations())
+        >>> subs.remove(folder['ob1'])
+        >>> subs.remove(folder['ob2'])
+        >>> subs.remove(folder['ob3'])
+        >>> subs
+        []
 
-      >>> sm = Contained()
-      >>> from zope.interface import directlyProvides
-      >>> from zope.interface.interfaces import IComponentLookup
-      >>> directlyProvides(sm, IComponentLookup)
-      >>> folder.setSiteManager(sm)
-      >>> directlyProvides(folder, zope.component.interfaces.ISite)
-      >>> subs = list(FolderSublocations(folder).sublocations())
-      >>> subs.remove(folder['ob1'])
-      >>> subs.remove(folder['ob2'])
-      >>> subs.remove(folder['ob3'])
-      >>> subs.remove(sm)
-      >>> subs
-      []
+        >>> sm = Contained()
+        >>> from zope.interface import directlyProvides
+        >>> from zope.interface.interfaces import IComponentLookup
+        >>> directlyProvides(sm, IComponentLookup)
+        >>> folder.setSiteManager(sm)
+        >>> directlyProvides(folder, zope.component.interfaces.ISite)
+        >>> subs = list(FolderSublocations(folder).sublocations())
+        >>> subs.remove(folder['ob1'])
+        >>> subs.remove(folder['ob2'])
+        >>> subs.remove(folder['ob3'])
+        >>> subs.remove(sm)
+        >>> subs
+        []
     """
 
     def __init__(self, folder):

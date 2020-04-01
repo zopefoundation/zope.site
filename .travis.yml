@@ -1,17 +1,15 @@
 language: python
-sudo: false
 python:
     - 2.7
-    - 3.4
     - 3.5
     - 3.6
+    - 3.7
+    - 3.8
     - pypy
     - pypy3
-matrix:
-    include:
-        - python: "3.7"
-          dist: xenial
-          sudo: true
+env:
+  global:
+    ZOPE_INTERFACE_STRICT_IRO: 1
 install:
     - pip install -U pip setuptools
     - pip install -U coverage coveralls

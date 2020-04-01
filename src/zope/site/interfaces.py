@@ -56,17 +56,17 @@ class ILocalSiteManager(zope.interface.interfaces.IComponents):
     def addSub(sub):
         """Add a new sub-registry to the node.
 
-        Important: This method should *not* be used manually. It is
-        automatically called by `setNext()`. To add a new registry to the
-        tree, use `sub.setNext(self, self.base)` instead!
+        .. caution:: This method should *not* be used manually. It is
+            automatically called by `setNext`. To add a new registry to the
+            tree, use ``sub.setNext(self, self.base)`` instead!
         """
 
     def removeSub(sub):
         """Remove a sub-registry to the node.
 
-        Important: This method should *not* be used manually. It is
-        automatically called by `setNext()`. To remove a registry from the
-        tree, use `sub.setNext(None)` instead!
+        .. caution:: This method should *not* be used manually. It is
+            automatically called by `setNext`. To remove a registry from the
+            tree, use ``sub.setNext(None)`` instead!
         """
 
 

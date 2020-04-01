@@ -1,1 +1,1 @@
-.. include:: ../src/zope/site/site.txt
+.. include:: ../src/zope/site/site.rst

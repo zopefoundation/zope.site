@@ -27,20 +27,6 @@ def read(*rnames):
         return f.read()
 
 
-def alltests():
-    import sys
-    import unittest
-    # use the zope.testrunner machinery to find all the
-    # test suites we've put under ourselves
-    import zope.testrunner.find
-    import zope.testrunner.options
-    here = os.path.abspath(os.path.join(os.path.dirname(__file__), 'src'))
-    args = sys.argv[:]
-    defaults = ["--test-path", here]
-    options = zope.testrunner.options.get_options(args, defaults)
-    suites = list(zope.testrunner.find.find_suites(options))
-    return unittest.TestSuite(suites)
-
 TESTS_REQUIRE = [
     'ZODB',
     'zope.component[zcml]',
@@ -51,7 +37,7 @@ TESTS_REQUIRE = [
 ]
 
 setup(name='zope.site',
-      version=read('version.txt').strip(),
+      version='4.3.0.dev0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Local registries for zope component architecture',
@@ -72,10 +58,10 @@ setup(name='zope.site',
           'Programming Language :: Python :: 2',
           'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.4',
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.8',
           'Programming Language :: Python :: Implementation :: CPython',
           'Programming Language :: Python :: Implementation :: PyPy',
           'Natural Language :: English',
@@ -90,6 +76,11 @@ setup(name='zope.site',
       namespace_packages=['zope'],
       extras_require={
           'test': TESTS_REQUIRE,
+          'docs': [
+              'sphinx',
+              'repoze.sphinx.autointerface',
+              'sphinx_rtd_theme',
+          ],
       },
       install_requires=[
           'setuptools',
@@ -104,7 +95,14 @@ setup(name='zope.site',
           'zope.location',
       ],
       tests_require=TESTS_REQUIRE,
-      test_suite='__main__.alltests',
       include_package_data=True,
       zip_safe=False,
+      python_requires=', '.join([
+          '>=2.7',
+          '!=3.0.*',
+          '!=3.1.*',
+          '!=3.2.*',
+          '!=3.3.*',
+          '!=3.4.*',
+      ]),
 )
