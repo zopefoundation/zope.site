@@ -278,7 +278,7 @@ site hierarchy is as follows:
 
            _____ global site _____
           /                       \
-      myfolder1                myfolder2
+      myfolder                 myfolder2
           |
       myfolder11
 
@@ -352,3 +352,9 @@ sitemanager's bases should be set to global site manager.
   >>> nosm['root'] = myfolder11
   >>> myfolder11.getSiteManager().__bases__ == (gsm, )
   True
+
+Deleting a site unregisters its site manger from its parent site manager:
+
+  >>> del myfolder2['myfolder21']
+  >>> myfolder2.getSiteManager().subs
+  ()

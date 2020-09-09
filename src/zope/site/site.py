@@ -247,11 +247,15 @@ def changeSiteConfigurationAfterMove(site, event):
 
     Subscriber to :class:`~.ISite` objects in a :class:`~.IObjectMovedEvent`.
     """
+    next = _findNextSiteManager(site)
+    local_sm = site.getSiteManager()
     if event.newParent is not None:
-        next = _findNextSiteManager(site)
         if next is None:
             next = zope.component.getGlobalSiteManager()
-        site.getSiteManager().__bases__ = (next, )
+        local_sm.__bases__ = (next, )
+    else:
+        if next is not None:
+            next.removeSub(local_sm)
 
 
 @zope.component.adapter(

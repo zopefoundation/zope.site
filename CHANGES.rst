@@ -5,7 +5,9 @@
 4.3.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- On removal of a site remove the sub of its site manager on the parent site
+  manager. See
+  `issue 1 <https://github.com/zopefoundation/zope.site/issues/1>`_.
 
 
 4.3.0 (2020-04-01)
