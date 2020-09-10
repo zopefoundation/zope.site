@@ -2,10 +2,12 @@
  Changes
 =========
 
-4.3.1 (unreleased)
+4.4.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- On removal of a site, clear the bases of its site manager. This fixes a reference leak 
+  from a parent site manager. See 
+  `issue 1 <https://github.com/zopefoundation/zope.site/issues/1>`_.
 
 
 4.3.0 (2020-04-01)
