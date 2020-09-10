@@ -219,11 +219,14 @@ def SiteManagerAdapter(ob):
 
 def changeSiteConfigurationAfterMove(site, event):
     """After a site is moved, its site manager links have to be updated."""
+    local_sm = site.getSiteManager()
     if event.newParent is not None:
         next = _findNextSiteManager(site)
         if next is None:
             next = zope.component.getGlobalSiteManager()
-        site.getSiteManager().__bases__ = (next, )
+        local_sm.__bases__ = (next, )
+    else:
+        local_sm.__bases__ = ()
 
 
 @zope.component.adapter(
