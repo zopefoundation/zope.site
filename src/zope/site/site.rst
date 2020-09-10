@@ -358,3 +358,8 @@ Deleting a site unregisters its site manger from its parent site manager:
   >>> del myfolder2['myfolder21']
   >>> myfolder2.getSiteManager().subs
   ()
+  
+The removed site manager now has no bases:
+
+  >>> myfolder21.getSiteManager().__bases__
+  ()
