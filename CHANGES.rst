@@ -2,7 +2,7 @@
  Changes
 =========
 
-4.3.1 (unreleased)
+4.4.0 (unreleased)
 ==================
 
 - On removal of a site remove the sub of its site manager on the parent site
