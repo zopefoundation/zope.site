@@ -2,7 +2,7 @@
  Changes
 =========
 
-4.4.0 (unreleased)
+4.4.0 (2020-09-10)
 ==================
 
 - On removal of a site, clear the bases of its site manager. This fixes a reference leak 
