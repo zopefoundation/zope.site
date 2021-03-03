@@ -83,5 +83,11 @@ class IFolder(zope.container.interfaces.IContainer,
     """The standard Zope Folder object interface."""
 
 
-class IRootFolder(IFolder, zope.location.interfaces.IRoot):
-    """The standard Zope root Folder object interface."""
+class IRootFolder(zope.location.interfaces.IRoot, IFolder):
+    """
+    The standard Zope root Folder object interface.
+
+    .. versionchanged:: 4.5.0
+       ``IRoot`` is now defined to come before ``IFolder`` in the
+        interface resolution (priority) order.
+    """

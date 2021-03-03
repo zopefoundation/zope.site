@@ -2,17 +2,33 @@
  Changes
 =========
 
-4.4.1 (unreleased)
+4.5.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix the interface definition of ``IRootFolder`` to give ``IRoot``
+  higher priority than the folder and container interfaces. This is
+  what is usually expected, but not what the code defined. Commonly,
+  in the past, this problem was hidden because the factory function
+  ``rootFolder()`` re-arranged the interfaces to put ``IRoot`` at the
+  front. Under zope.interface 5's C3 resolution order, however, this
+  rearrangement was not taking place; thus, looking up adapters for a
+  ``rootFolder()`` object was likely to find adapters for
+  ``IItemContainer``  instead of adapters for ``IRoot`` as intended.
+
+  With this change, users of ``rootFolder()`` should notice no changes
+  compared with zope.interface 4. Code that has classes defined to
+  implement ``IRootFolder`` directly, though, may notice a different
+  resolution order on those objects (consistent with what
+  ``rootFolder()`` generates).
+
+  See `issue 17 <https://github.com/zopefoundation/zope.site/issues/17>`_.
 
 
 4.4.0 (2020-09-10)
 ==================
 
-- On removal of a site, clear the bases of its site manager. This fixes a reference leak 
-  from a parent site manager. See 
+- On removal of a site, clear the bases of its site manager. This fixes a reference leak
+  from a parent site manager. See
   `issue 1 <https://github.com/zopefoundation/zope.site/issues/1>`_.
 
 
