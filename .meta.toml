@@ -1,0 +1,15 @@
+# Generated from:
+# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+[meta]
+template = "pure-python"
+commit-id = "cd784442fc133e7d377d7ca22b0b1b5f6865fd62"
+
+[python]
+with-appveyor = false
+with-pypy = true
+with-legacy-python = true
+with-docs = true
+with-sphinx-doctests = false
+
+[coverage]
+fail-under = 100
