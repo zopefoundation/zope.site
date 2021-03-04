@@ -38,7 +38,7 @@ checker = renormalizing.RENormalizing([
 def createSiteManager(folder, setsite=False):
     if not zope.component.interfaces.ISite.providedBy(folder):
         folder.setSiteManager(LocalSiteManager(folder))
-    if setsite:
+    if setsite:  # pragma: no cover
         zope.component.hooks.setSite(folder)
     return folder.getSiteManager()
 

@@ -5,8 +5,9 @@
 4.5.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Add support for Python 3.9.
 
+- Move from Travis CI to GitHub Actions.
 
 4.5.0 (2021-03-04)
 ==================

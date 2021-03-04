@@ -20,10 +20,28 @@ from zope.site.site import LocalSiteManager, changeSiteConfigurationAfterMove
 from zope.site.site import threadSiteSubscriber
 from zope.site.site import clearThreadSiteSubscriber
 
+__all__ = [
+    'SiteManagerContainer',
+    'SiteManagementFolder',
+    'SiteManagerAdapter',
+    'LocalSiteManager',
+    'threadSiteSubscriber',
+    'clearThreadSiteSubscriber',
+    'changeSiteConfigurationAfterMove',
+]
+
 
 # BBB. Remove in Version 5.0
 from zope.component import getNextUtility
 from zope.component import queryNextUtility
 from zope.deprecation import deprecated
-getNextUtility = deprecated(getNextUtility, '``zope.site.getNextUtility`` is deprecated and will be removed in zope.site 5.0. Use it from ``zope.component`` instead.')  # noqa
-queryNextUtility = deprecated(queryNextUtility, '``zope.site.queryNextUtility`` is deprecated and will be removed in zope.site 5.0. Use it from ``zope.component`` instead.')  # noqa
+getNextUtility = deprecated(
+    getNextUtility,
+    '``zope.site.getNextUtility`` is deprecated '
+    'and will be removed in zope.site 5.0. '
+    'Use it from ``zope.component`` instead.')  # noqa
+queryNextUtility = deprecated(
+    queryNextUtility,
+    '``zope.site.queryNextUtility`` is deprecated '
+    'and will be removed in zope.site 5.0. '
+    'Use it from ``zope.component`` instead.')  # noqa

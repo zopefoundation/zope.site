@@ -10,8 +10,8 @@
         :target: https://pypi.org/project/zope.site/
         :alt: Supported Python versions
 
-.. image:: https://travis-ci.com/zopefoundation/zope.site.svg?branch=master
-        :target: https://travis-ci.com/zopefoundation/zope.site
+.. image:: https://github.com/zopefoundation/zope.site/workflows/tests/badge.svg
+   :target: https://github.com/zopefoundation/zope.site/actions?query=workflow%3Atests
 
 .. image:: https://coveralls.io/repos/github/zopefoundation/zope.site/badge.svg?branch=master
         :target: https://coveralls.io/github/zopefoundation/zope.site?branch=master
