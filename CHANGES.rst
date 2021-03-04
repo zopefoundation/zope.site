@@ -2,7 +2,7 @@
  Changes
 =========
 
-4.5.0 (unreleased)
+4.5.0 (2021-03-04)
 ==================
 
 - Fix the interface definition of ``IRootFolder`` to give ``IRoot``
