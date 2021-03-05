@@ -47,8 +47,9 @@ class TestLocalSiteManager(unittest.TestCase):
         data = dumps(self.root['site'])
         self.root['copied_site'] = loads(data)
 
-        self.assertTrue(
-            self.root['copied_site'].getSiteManager().getUtility(I1) is not self.util)
+        self.assertIsNot(
+            self.root['copied_site'].getSiteManager().getUtility(I1),
+            self.util)
 
 
 def test_suite():

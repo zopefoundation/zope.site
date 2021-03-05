@@ -36,8 +36,10 @@ class IFoo(interface.Interface):
 @interface.implementer(IFoo)
 class Foo(persistent.Persistent, zope.container.contained.Contained):
     name = ''
+
     def __init__(self, name=''):
         self.name = name
+
 
 class GlobalRegistry:
     pass

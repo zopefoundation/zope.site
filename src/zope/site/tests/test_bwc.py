@@ -16,6 +16,7 @@
 import unittest
 import warnings
 
+
 class TestNext(unittest.TestCase):
 
     def test_import(self):

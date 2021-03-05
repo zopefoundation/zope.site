@@ -26,11 +26,15 @@ A local site manager has a number of roles:
 import zope.event
 import zope.interface
 import zope.component
-import zope.component.persistentregistry
+from zope.component.persistentregistry import PersistentComponents
+from zope.component.persistentregistry import PersistentAdapterRegistry
 import zope.component.hooks
 import zope.component.interfaces
+from zope.component.interfaces import ISite
 import zope.location
 import zope.location.interfaces
+from zope.location.interfaces import IRoot
+from zope.location.interfaces import ILocationInfo
 
 from zope.interface.interfaces import IComponentLookup
 from zope.interface.interfaces import ComponentLookupError
@@ -46,7 +50,11 @@ from zope.site import interfaces
 # BBB. Remove in Version 5.0
 from zope.component.hooks import setSite
 from zope.deprecation import deprecated
-setSite = deprecated(setSite, '``zope.site.site.setSite`` is deprecated and will be removed in zope.site Version 5.0. Use it from ``zope.component.hooks`` instead.')  # noqa
+setSite = deprecated(
+    setSite,
+    '``zope.site.site.setSite`` is deprecated '
+    'and will be removed in zope.site Version 5.0. '
+    'Use it from ``zope.component.hooks`` instead.')  # noqa
 
 
 @zope.interface.implementer(interfaces.ISiteManagementFolder)
@@ -84,7 +92,8 @@ class SiteManagerContainer(Contained):
         raise ComponentLookupError('no site manager defined')
 
     def setSiteManager(self, sm):
-        if zope.component.interfaces.ISite.providedBy(self):
+        # pylint:disable=no-value-for-parameter
+        if ISite.providedBy(self):
             raise TypeError("Already a site")
 
         if IComponentLookup.providedBy(sm):
@@ -100,32 +109,32 @@ class SiteManagerContainer(Contained):
 
 def _findNextSiteManager(site):
     while True:
-        if zope.location.interfaces.IRoot.providedBy(site):
+        if IRoot.providedBy(site):   # pylint:disable=no-value-for-parameter
             # we're the root site, return None
             return None
 
         try:
-            site = zope.location.interfaces.ILocationInfo(site).getParent()
+            # pylint:disable=no-value-for-parameter, too-many-function-args
+            # pylint:disable=assignment-from-no-return
+            site = ILocationInfo(site).getParent()
         except TypeError:
             # there was not enough context; probably run from a test
             return None
 
-        if zope.component.interfaces.ISite.providedBy(site):
+        if ISite.providedBy(site):  # pylint:disable=no-value-for-parameter
             return site.getSiteManager()
 
 
 class _LocalAdapterRegistry(
-        zope.component.persistentregistry.PersistentAdapterRegistry,
+        PersistentAdapterRegistry,
         zope.location.Location,
 ):
     pass
 
 
 @zope.interface.implementer(interfaces.ILocalSiteManager)
-class LocalSiteManager(
-        BTreeContainer,
-        zope.component.persistentregistry.PersistentComponents,
-):
+class LocalSiteManager(BTreeContainer,
+                       PersistentComponents):
     """Local Site Manager (:class:`~.ILocalSiteManager`) implementation"""
 
     subs = ()
@@ -134,32 +143,32 @@ class LocalSiteManager(
 
         # Update base subs
         for base in self.__bases__:
-            if ((base not in bases)
-                and interfaces.ILocalSiteManager.providedBy(base)
-            ):
+            if ((base not in bases)  # pragma: no cover
+                    # pylint:disable=no-value-for-parameter
+                    and interfaces.ILocalSiteManager.providedBy(base)):
                 base.removeSub(self)
 
         for base in bases:
             if ((base not in self.__bases__)
-                and interfaces.ILocalSiteManager.providedBy(base)
-            ):
+                    # pylint:disable=no-value-for-parameter
+                    and interfaces.ILocalSiteManager.providedBy(base)):
                 base.addSub(self)
 
         super(LocalSiteManager, self)._setBases(bases)
 
     def __init__(self, site, default_folder=True):
         BTreeContainer.__init__(self)
-        zope.component.persistentregistry.PersistentComponents.__init__(self)
+        PersistentComponents.__init__(self)
 
         # Locate the site manager
         self.__parent__ = site
         self.__name__ = '++etc++site'
 
         # Set base site manager
-        next = _findNextSiteManager(site)
-        if next is None:
-            next = zope.component.getGlobalSiteManager()
-        self.__bases__ = (next, )
+        next_sm = _findNextSiteManager(site)
+        if next_sm is None:
+            next_sm = zope.component.getGlobalSiteManager()
+        self.__bases__ = (next_sm, )
 
         # Setup default site management folder if requested
         if default_folder:
@@ -175,7 +184,7 @@ class LocalSiteManager(
         self.utilities.__name__ = u'utilities'
 
     def _p_repr(self):
-        return zope.component.persistentregistry.PersistentComponents.__repr__(self)
+        return PersistentComponents.__repr__(self)
 
     def addSub(self, sub):
         """See :meth:`zope.site.interfaces.ILocalSiteManager.addSub`"""
@@ -188,14 +197,16 @@ class LocalSiteManager(
 
 
 def threadSiteSubscriber(ob, event):
-    """A multi-subscriber to `zope.component.interfaces.ISite`
-    and `zope.traversing.interfaces.BeforeTraverseEvent`.
+    """A multi-subscriber to `zope.component.interfaces.ISite` and
+    `zope.traversing.interfaces.BeforeTraverseEvent`.
 
     Sets the 'site' thread global if the object traversed is a site.
 
-    .. note:: The ``configure.zcml`` included in this package does *not*
-       install this subscriber. That must be configured separately. ``zope.app.publication``
-       includes such configuration.
+    .. note::
+
+       The ``configure.zcml`` included in this package does
+       *not* install this subscriber. That must be configured separately.
+       ``zope.app.publication`` includes such configuration.
     """
     zope.component.hooks.setSite(ob)
 
@@ -205,17 +216,20 @@ def clearThreadSiteSubscriber(event):
 
     Cleans up the site thread global after the request is processed.
 
-    .. note:: The ``configure.zcml`` included in this package does *not*
-       install this subscriber. That must be configured separately. ``zope.app.publication``
-       includes such configuration.
+    .. note::
+
+        The ``configure.zcml`` included in this package does *not*
+        install this subscriber. That must be configured separately.
+        ``zope.app.publication`` includes such configuration.
     """
     clearSite()
+
 
 # Clear the site thread global
 clearSite = zope.component.hooks.setSite
 try:
     from zope.testing.cleanup import addCleanUp
-except ImportError: # pragma: no cover
+except ImportError:  # pragma: no cover
     pass
 else:
     addCleanUp(clearSite)
@@ -231,7 +245,7 @@ def SiteManagerAdapter(ob):
     """
     current = ob
     while True:
-        if zope.component.interfaces.ISite.providedBy(current):
+        if ISite.providedBy(current):  # pylint:disable=no-value-for-parameter
             return current.getSiteManager()
         current = getattr(current, '__parent__', None)
         if current is None:
@@ -249,10 +263,10 @@ def changeSiteConfigurationAfterMove(site, event):
     """
     local_sm = site.getSiteManager()
     if event.newParent is not None:
-        next = _findNextSiteManager(site)
-        if next is None:
-            next = zope.component.getGlobalSiteManager()
-        local_sm.__bases__ = (next, )
+        next_sm = _findNextSiteManager(site)
+        if next_sm is None:
+            next_sm = zope.component.getGlobalSiteManager()
+        local_sm.__bases__ = (next_sm, )
     else:
         local_sm.__bases__ = ()
 

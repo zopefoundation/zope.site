@@ -40,7 +40,7 @@ class CustomFolder(folder.Folder):
         self.__name__ = name
         super(CustomFolder, self).__init__()
 
-    def __repr__(self): # pragma: no cover
+    def __repr__(self):  # pragma: no cover
         return '<%s %s>' % (self.__class__.__name__, self.__name__)
 
 
@@ -112,7 +112,6 @@ class TestSiteManagerContainer(unittest.TestCase):
     def test_set_w_bogus_value(self):
         smc = self.makeTestObject()
         self.assertRaises(Exception, smc.setSiteManager, self)
-
 
     def test_get_no_manager(self):
         smc = self.makeTestObject()

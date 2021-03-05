@@ -1,0 +1,21 @@
+# Generated from:
+# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+[meta]
+template = "pure-python"
+commit-id = "d988e1c42d7b7f04b2b704a583cb6623cc564ddc"
+
+[python]
+with-appveyor = false
+with-pypy = true
+with-legacy-python = true
+with-docs = true
+with-sphinx-doctests = false
+
+[coverage]
+fail-under = 100
+
+[tox]
+testenv-additional = [
+    "setenv =",
+    "    ZOPE_INTERFACE_STRICT_IRO=1",
+    ]
