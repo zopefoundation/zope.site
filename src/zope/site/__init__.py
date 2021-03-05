@@ -39,9 +39,9 @@ getNextUtility = deprecated(
     getNextUtility,
     '``zope.site.getNextUtility`` is deprecated '
     'and will be removed in zope.site 5.0. '
-    'Use it from ``zope.component`` instead.')  # noqa
+    'Use it from ``zope.component`` instead.')
 queryNextUtility = deprecated(
     queryNextUtility,
     '``zope.site.queryNextUtility`` is deprecated '
     'and will be removed in zope.site 5.0. '
-    'Use it from ``zope.component`` instead.')  # noqa
+    'Use it from ``zope.component`` instead.')
