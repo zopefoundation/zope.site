@@ -5,7 +5,7 @@
 4.5.1 (unreleased)
 ==================
 
-- Add support for Python 3.9.
+- Add support for Python 3.9, 3.10.
 
 - Move from Travis CI to GitHub Actions.
 

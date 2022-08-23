@@ -14,11 +14,14 @@
 """Local Component Architecture
 """
 
-from zope.site.site import (SiteManagerContainer, SiteManagementFolder,
-                            SiteManagerAdapter)
-from zope.site.site import LocalSiteManager, changeSiteConfigurationAfterMove
-from zope.site.site import threadSiteSubscriber
+from zope.site.site import LocalSiteManager
+from zope.site.site import SiteManagementFolder
+from zope.site.site import SiteManagerAdapter
+from zope.site.site import SiteManagerContainer
+from zope.site.site import changeSiteConfigurationAfterMove
 from zope.site.site import clearThreadSiteSubscriber
+from zope.site.site import threadSiteSubscriber
+
 
 __all__ = [
     'SiteManagerContainer',
@@ -35,6 +38,8 @@ __all__ = [
 from zope.component import getNextUtility
 from zope.component import queryNextUtility
 from zope.deprecation import deprecated
+
+
 getNextUtility = deprecated(
     getNextUtility,
     '``zope.site.getNextUtility`` is deprecated '

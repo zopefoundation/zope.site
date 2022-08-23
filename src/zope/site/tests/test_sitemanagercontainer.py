@@ -17,15 +17,15 @@
 import unittest
 
 import zope.component
-from zope.component import getSiteManager
 import zope.container.testing
+from zope.component import getSiteManager
 from zope.event import notify
 from zope.lifecycleevent import ObjectRemovedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
+import zope.site.testing
 from zope.site.folder import rootFolder
 from zope.site.site import SiteManagerContainer
-import zope.site.testing
 
 
 class Dummy(object):

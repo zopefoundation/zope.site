@@ -4,7 +4,9 @@ import doctest
 import unittest
 
 from zope.site.folder import Folder
-from zope.site.testing import siteSetUp, siteTearDown, checker
+from zope.site.testing import checker
+from zope.site.testing import siteSetUp
+from zope.site.testing import siteTearDown
 from zope.site.tests.test_site import TestSiteManagerContainer
 
 
@@ -25,10 +27,11 @@ class FolderTest(TestSiteManagerContainer):
 class TestRootFolder(unittest.TestCase):
 
     def test_IRoot_before_IContainer_rootFolder(self):
-        from zope.site.folder import rootFolder
+        from zope.container.interfaces import IContainer
         from zope.interface import providedBy
         from zope.location.interfaces import IRoot
-        from zope.container.interfaces import IContainer
+
+        from zope.site.folder import rootFolder
 
         folder = rootFolder()
         provides = list(providedBy(folder).flattened())
@@ -39,9 +42,10 @@ class TestRootFolder(unittest.TestCase):
         self.assertLess(iroot, container)
 
     def test_IRoot_before_IContainer_IRootFolder(self):
-        from zope.site.interfaces import IRootFolder
-        from zope.location.interfaces import IRoot
         from zope.container.interfaces import IContainer
+        from zope.location.interfaces import IRoot
+
+        from zope.site.interfaces import IRootFolder
 
         provides = list(IRootFolder.__iro__)
 
