@@ -2,12 +2,13 @@
  Changes
 =========
 
-4.5.1 (unreleased)
-==================
+4.6 (unreleased)
+================
 
 - Add support for Python 3.9, 3.10.
 
-- Move from Travis CI to GitHub Actions.
+- Fix deprecation warning.
+
 
 4.5.0 (2021-03-04)
 ==================

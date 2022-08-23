@@ -28,6 +28,7 @@ import zope.component.hooks
 import zope.component.interfaces
 import zope.event
 import zope.interface
+import zope.lifecycleevent.interfaces
 import zope.location
 import zope.location.interfaces
 from zope.component.hooks import setSite
@@ -271,7 +272,7 @@ def changeSiteConfigurationAfterMove(site, event):
 
 @zope.component.adapter(
     SiteManagerContainer,
-    zope.container.interfaces.IObjectMovedEvent)
+    zope.lifecycleevent.interfaces.IObjectMovedEvent)
 def siteManagerContainerRemoved(container, event):
     # The relation between SiteManagerContainer and LocalSiteManager is a
     # kind of containment hierarchy, but it is not expressed via containment,
