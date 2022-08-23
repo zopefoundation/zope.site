@@ -16,9 +16,10 @@
 import unittest
 
 from zope.interface import Interface
+
+import zope.site.testing
 from zope import site
 from zope.site.folder import Folder
-import zope.site.testing
 
 
 class I1(Interface):
@@ -40,7 +41,8 @@ class TestLocalSiteManager(unittest.TestCase):
         zope.site.testing.siteTearDown()
 
     def testPersistence(self):
-        from pickle import dumps, loads
+        from pickle import dumps
+        from pickle import loads
         self.assertTrue(
             self.root['site'].getSiteManager().getUtility(I1) is self.util)
 

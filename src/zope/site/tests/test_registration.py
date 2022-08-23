@@ -17,14 +17,13 @@ __docformat__ = "reStructuredText"
 
 import unittest
 
-
 import persistent
 import transaction
 import zope.component.globalregistry
 import zope.component.testing as placelesssetup
 import zope.container.contained
-import zope.site
 
+import zope.site
 from zope import interface
 
 

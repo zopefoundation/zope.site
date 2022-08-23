@@ -23,33 +23,32 @@ A local site manager has a number of roles:
     SiteManager to search for modules.
 """
 
-import zope.event
-import zope.interface
 import zope.component
-from zope.component.persistentregistry import PersistentComponents
-from zope.component.persistentregistry import PersistentAdapterRegistry
 import zope.component.hooks
 import zope.component.interfaces
-from zope.component.interfaces import ISite
+import zope.event
+import zope.interface
+import zope.lifecycleevent.interfaces
 import zope.location
 import zope.location.interfaces
-from zope.location.interfaces import IRoot
-from zope.location.interfaces import ILocationInfo
-
-from zope.interface.interfaces import IComponentLookup
-from zope.interface.interfaces import ComponentLookupError
-from zope.lifecycleevent import ObjectCreatedEvent
-from zope.filerepresentation.interfaces import IDirectoryFactory
-
+from zope.component.hooks import setSite
+from zope.component.interfaces import ISite
+from zope.component.persistentregistry import PersistentAdapterRegistry
+from zope.component.persistentregistry import PersistentComponents
 from zope.container.btree import BTreeContainer
 from zope.container.contained import Contained
+from zope.deprecation import deprecated
+from zope.filerepresentation.interfaces import IDirectoryFactory
+from zope.interface.interfaces import ComponentLookupError
+from zope.interface.interfaces import IComponentLookup
+from zope.lifecycleevent import ObjectCreatedEvent
+from zope.location.interfaces import ILocationInfo
+from zope.location.interfaces import IRoot
 
 from zope.site import interfaces
 
 
-# BBB. Remove in Version 5.0
-from zope.component.hooks import setSite
-from zope.deprecation import deprecated
+# BBB. Remove in Version 5.0 including imports
 setSite = deprecated(
     setSite,
     '``zope.site.site.setSite`` is deprecated '
@@ -273,7 +272,7 @@ def changeSiteConfigurationAfterMove(site, event):
 
 @zope.component.adapter(
     SiteManagerContainer,
-    zope.container.interfaces.IObjectMovedEvent)
+    zope.lifecycleevent.interfaces.IObjectMovedEvent)
 def siteManagerContainerRemoved(container, event):
     # The relation between SiteManagerContainer and LocalSiteManager is a
     # kind of containment hierarchy, but it is not expressed via containment,

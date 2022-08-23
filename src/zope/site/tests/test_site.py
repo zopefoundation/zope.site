@@ -20,12 +20,12 @@ import unittest
 
 import zope.interface
 import zope.interface.verify
-from zope.component.interfaces import ISite, IPossibleSite
+from zope.component.interfaces import IPossibleSite
+from zope.component.interfaces import ISite
 
-from zope.site import folder
-
-from zope.site import interfaces
 from zope import site
+from zope.site import folder
+from zope.site import interfaces
 from zope.site import testing
 
 
@@ -122,8 +122,8 @@ class TestSiteManagerContainer(unittest.TestCase):
 class TestSMFolderFactory(unittest.TestCase):
 
     def test_call(self):
-        from zope.site.site import SMFolderFactory
         from zope.site.site import SiteManagementFolder
+        from zope.site.site import SMFolderFactory
         result = SMFolderFactory(None)('')
         self.assertIsInstance(result, SiteManagementFolder)
 
@@ -134,9 +134,10 @@ class TestSubscriber(unittest.TestCase):
         return self
 
     def test_set_and_clear(self):
-        from zope.site.site import threadSiteSubscriber
-        from zope.site.site import clearThreadSiteSubscriber
         from zope.component.hooks import getSite
+
+        from zope.site.site import clearThreadSiteSubscriber
+        from zope.site.site import threadSiteSubscriber
 
         threadSiteSubscriber(self, None)
         self.assertIs(self, getSite())
@@ -144,8 +145,8 @@ class TestSubscriber(unittest.TestCase):
         self.assertIsNone(getSite())
 
     def test_removed(self):
-        from zope.site.site import siteManagerContainerRemoved
         from zope.site.site import ComponentLookupError
+        from zope.site.site import siteManagerContainerRemoved
         siteManagerContainerRemoved(self, None)
 
         # And a raise is ignored too

@@ -13,8 +13,11 @@
 ##############################################################################
 import zope.component.interfaces
 import zope.container.folder
-from zope.interface import implementer, directlyProvides
-from zope.site.interfaces import IFolder, IRootFolder
+from zope.interface import directlyProvides
+from zope.interface import implementer
+
+from zope.site.interfaces import IFolder
+from zope.site.interfaces import IRootFolder
 from zope.site.site import SiteManagerContainer
 
 

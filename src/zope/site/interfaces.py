@@ -14,12 +14,11 @@
 """Interfaces for the Local Component Architecture
 """
 
+import zope.container.constraints
+import zope.container.interfaces
 import zope.interface
 import zope.interface.interfaces
-import zope.container.interfaces
-import zope.container.constraints
 import zope.location.interfaces
-
 from zope.annotation.interfaces import IAttributeAnnotatable
 
 
