@@ -289,10 +289,10 @@ site hierarchy is as follows:
 Before we can move or copy sites, we need to register two event subscribers
 that manage the wiring of site managers after moving or copying:
 
-  >>> from zope import container
+  >>> import zope.lifecycleevent.interfaces
   >>> gsm.registerHandler(
   ...    site.changeSiteConfigurationAfterMove,
-  ...    (ISite, container.interfaces.IObjectMovedEvent),
+  ...    (ISite, zope.lifecycleevent.interfaces.IObjectMovedEvent),
   ...    )
 
 We only have to register one event listener, since the copy action causes an
@@ -358,7 +358,7 @@ Deleting a site unregisters its site manger from its parent site manager:
   >>> del myfolder2['myfolder21']
   >>> myfolder2.getSiteManager().subs
   ()
-  
+
 The removed site manager now has no bases:
 
   >>> myfolder21.getSiteManager().__bases__

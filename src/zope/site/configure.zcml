@@ -57,7 +57,7 @@
 
   <subscriber
       for="zope.component.interfaces.ISite
-           zope.container.interfaces.IObjectMovedEvent"
+           zope.lifecycleevent.interfaces.IObjectMovedEvent"
       handler=".site.changeSiteConfigurationAfterMove"
       />
 
