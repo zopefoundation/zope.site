@@ -56,5 +56,5 @@ class TestLocalSiteManager(unittest.TestCase):
 
 def test_suite():
     return unittest.TestSuite((
-        unittest.makeSuite(TestLocalSiteManager),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestLocalSiteManager),
     ))

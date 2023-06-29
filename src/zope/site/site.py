@@ -62,7 +62,7 @@ class SiteManagementFolder(BTreeContainer):
 
 
 @zope.interface.implementer(IDirectoryFactory)
-class SMFolderFactory(object):
+class SMFolderFactory:
     """
     Implementation of a :class:`~.IDirectoryFactory` that creates
     :class:`SiteManagementFolder`
@@ -153,7 +153,7 @@ class LocalSiteManager(BTreeContainer,
                     and interfaces.ILocalSiteManager.providedBy(base)):
                 base.addSub(self)
 
-        super(LocalSiteManager, self)._setBases(bases)
+        super()._setBases(bases)
 
     def __init__(self, site, default_folder=True):
         BTreeContainer.__init__(self)
@@ -179,8 +179,8 @@ class LocalSiteManager(BTreeContainer,
         self.adapters = _LocalAdapterRegistry()
         self.utilities = _LocalAdapterRegistry()
         self.adapters.__parent__ = self.utilities.__parent__ = self
-        self.adapters.__name__ = u'adapters'
-        self.utilities.__name__ = u'utilities'
+        self.adapters.__name__ = 'adapters'
+        self.utilities.__name__ = 'utilities'
 
     def _p_repr(self):
         return PersistentComponents.__repr__(self)

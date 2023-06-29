@@ -40,19 +40,19 @@ Let's add another folder to see how a non-site folder behaves:
 The site folder now contains the new folder:
 
   >>> list(fs_folder.keys())
-  [u'test', '++etc++site']
+  ['test', '++etc++site']
   >>> fs_folder.get('test')
   <...Folder object at 0x...>
   >>> fs_folder['test']
   <...Folder object at 0x...>
   >>> list(fs_folder.__iter__())
-  [u'test', '++etc++site']
+  ['test', '++etc++site']
   >>> list(fs_folder.values())
   [...Folder object at 0x...>, <LocalSiteManager ++etc++site>]
   >>> len(fs_folder)
   2
   >>> list(fs_folder.items())
-  [(u'test', ...Folder object at 0x...>),
+  [('test', ...Folder object at 0x...>),
    ('++etc++site', <LocalSiteManager ++etc++site>)]
   >>> 'test' in fs_folder
   True

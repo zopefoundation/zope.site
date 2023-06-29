@@ -33,7 +33,7 @@ def rootFolder():
     return f
 
 
-class FolderSublocations(object):
+class FolderSublocations:
     """
     Adapter for an :class:`zope.site.interfaces.IFolder` to
     :class:`zope.location.interfaces.ISublocations`.
