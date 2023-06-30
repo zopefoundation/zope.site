@@ -1,10 +1,7 @@
-
-
 import doctest
 import unittest
 
 from zope.site.folder import Folder
-from zope.site.testing import checker
 from zope.site.testing import siteSetUp
 from zope.site.testing import siteTearDown
 from zope.site.tests.test_site import TestSiteManagerContainer
@@ -63,5 +60,5 @@ def test_suite():
                              setUp=setUp, tearDown=tearDown),
         doctest.DocFileSuite("folder.txt",
                              setUp=setUp, tearDown=tearDown,
-                             checker=checker, optionflags=flags),
+                             optionflags=flags),
     ))

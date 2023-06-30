@@ -28,7 +28,7 @@ from zope.site.folder import rootFolder
 from zope.site.site import SiteManagerContainer
 
 
-class Dummy(object):
+class Dummy:
     pass
 
 

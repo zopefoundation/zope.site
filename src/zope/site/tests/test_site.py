@@ -30,7 +30,7 @@ from zope.site import testing
 
 
 @zope.interface.implementer(interfaces.ILocalSiteManager)
-class SiteManagerStub(object):
+class SiteManagerStub:
     pass
 
 
@@ -38,10 +38,10 @@ class CustomFolder(folder.Folder):
 
     def __init__(self, name):
         self.__name__ = name
-        super(CustomFolder, self).__init__()
+        super().__init__()
 
     def __repr__(self):  # pragma: no cover
-        return '<%s %s>' % (self.__class__.__name__, self.__name__)
+        return '<{} {}>'.format(self.__class__.__name__, self.__name__)
 
 
 def test_SiteManagerAdapter():
@@ -181,7 +181,7 @@ def tearDown(test):
     testing.siteTearDown()
 
 
-class Layer(object):
+class Layer:
 
     @staticmethod
     def setUp():

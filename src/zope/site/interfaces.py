@@ -29,7 +29,7 @@ class INewLocalSite(zope.interface.Interface):
 
 
 @zope.interface.implementer(INewLocalSite)
-class NewLocalSite(object):
+class NewLocalSite:
     """Event: a local site was created
     """
     def __init__(self, manager):
