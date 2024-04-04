@@ -17,7 +17,7 @@
         :target: https://coveralls.io/github/zopefoundation/zope.site?branch=master
 
 .. image:: https://readthedocs.org/projects/zopesite/badge/?version=latest
-        :target: httpl://zopesite.readthedocs.io/en/latest/
+        :target: https://zopesite.readthedocs.io/en/latest/
         :alt: Documentation Status
 
 
