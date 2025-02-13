@@ -228,7 +228,7 @@ def clearThreadSiteSubscriber(event):
 clearSite = zope.component.hooks.setSite
 try:
     from zope.testing.cleanup import addCleanUp
-except ImportError:  # pragma: no cover
+except ModuleNotFoundError:  # pragma: no cover
     pass
 else:
     addCleanUp(clearSite)
