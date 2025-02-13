@@ -41,7 +41,7 @@ class CustomFolder(folder.Folder):
         super().__init__()
 
     def __repr__(self):  # pragma: no cover
-        return '<{} {}>'.format(self.__class__.__name__, self.__name__)
+        return f'<{self.__class__.__name__} {self.__name__}>'
 
 
 def test_SiteManagerAdapter():
@@ -106,7 +106,7 @@ class TestSiteManagerContainer(unittest.TestCase):
         sm = site.LocalSiteManager(smc)
         smc.setSiteManager(sm)
         self.assertTrue(ISite.providedBy(smc))
-        self.assertTrue(smc.getSiteManager() is sm)
+        self.assertIs(smc.getSiteManager(), sm)
         zope.interface.verify.verifyObject(ISite, smc)
 
     def test_set_w_bogus_value(self):

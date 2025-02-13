@@ -43,8 +43,10 @@ class TestLocalSiteManager(unittest.TestCase):
     def testPersistence(self):
         from pickle import dumps
         from pickle import loads
-        self.assertTrue(
-            self.root['site'].getSiteManager().getUtility(I1) is self.util)
+        self.assertIs(
+            self.root['site'].getSiteManager().getUtility(I1),
+            self.util
+        )
 
         data = dumps(self.root['site'])
         self.root['copied_site'] = loads(data)
