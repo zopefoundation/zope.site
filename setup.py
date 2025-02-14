@@ -40,7 +40,7 @@ TESTS_REQUIRE = [
 
 setup(
     name='zope.site',
-    version='5.1',
+    version='5.2.dev0',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
     description='Local registries for zope component architecture',
