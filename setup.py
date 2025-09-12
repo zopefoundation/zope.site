@@ -20,7 +20,6 @@
 """
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -35,12 +34,12 @@ TESTS_REQUIRE = [
     'zope.configuration',
     'zope.security[zcml]',
     'zope.testing',
-    'zope.testrunner',
+    'zope.testrunner >= 6.4',
 ]
 
 setup(
     name='zope.site',
-    version='5.2.dev0',
+    version='6.0.dev0',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
     description='Local registries for zope component architecture',
@@ -73,9 +72,6 @@ setup(
     ],
     url='http://zopesite.readthedocs.io',
     license='ZPL-2.1',
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
-    namespace_packages=['zope'],
     extras_require={
         'test': TESTS_REQUIRE,
         'docs': [
